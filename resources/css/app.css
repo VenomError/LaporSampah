@@ -1,0 +1,113 @@
+@import "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css";
+@import "https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css";
+@import "../template/css/swiper.min.css";
+@import "../template/css/index.css";
+
+
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+
+
+
+/* =======================
+   BOOTSTRAP COLOR SYSTEM
+   ======================= */
+:root {
+    --bs-primary:   #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success:   #236B4C;
+    --bs-danger:    #dc3545;
+    --bs-warning:   #ffc107;
+    --bs-info:      #0dcaf0;
+    --bs-light:     #f8f9fa;
+    --bs-dark:      #212529;
+
+    /* Soft / subtle */
+    --bs-primary-bg-subtle:   #cfe2ff;
+    --bs-secondary-bg-subtle: #e2e3e5;
+    --bs-success-bg-subtle:   #d1e7dd;
+    --bs-danger-bg-subtle:    #f8d7da;
+    --bs-warning-bg-subtle:   #fff3cd;
+    --bs-info-bg-subtle:      #cff4fc;
+    --bs-light-bg-subtle:     #fefefe;
+    --bs-dark-bg-subtle:      #d3d3d4;
+
+    /* Emphasis / text strong */
+    --bs-primary-text-emphasis:   #052c65;
+    --bs-secondary-text-emphasis: #2c3034;
+    --bs-success-text-emphasis:   #0f5132;
+    --bs-danger-text-emphasis:    #842029;
+    --bs-warning-text-emphasis:   #664d03;
+    --bs-info-text-emphasis:      #055160;
+    --bs-light-text-emphasis:     #495057;
+    --bs-dark-text-emphasis:      #141619;
+}
+
+
+/* =======================
+   BACKGROUND CLASSES
+   ======================= */
+.bg-primary   { background: var(--bs-primary); color:#fff; }
+.bg-secondary { background: var(--bs-secondary); color:#fff; }
+.bg-success   { background: var(--bs-success); color:#fff; }
+.bg-danger    { background: var(--bs-danger); color:#fff; }
+.bg-warning   { background: var(--bs-warning); color:#000; }
+.bg-info      { background: var(--bs-info); color:#000; }
+.bg-light     { background: var(--bs-light); color:#000; }
+.bg-dark      { background: var(--bs-dark); color:#fff; }
+
+
+/* =======================
+   TEXT COLOR CLASSES
+   ======================= */
+.text-primary   { color: var(--bs-primary); }
+.text-secondary { color: var(--bs-secondary); }
+.text-success   { color: var(--bs-success); }
+.text-danger    { color: var(--bs-danger); }
+.text-warning   { color: var(--bs-warning); }
+.text-info      { color: var(--bs-info); }
+.text-light     { color: var(--bs-light); }
+.text-dark      { color: var(--bs-dark); }
+
+
+/* =======================
+   BORDER COLOR CLASSES
+   ======================= */
+.border-primary   { border: 2px solid var(--bs-primary); }
+.border-secondary { border: 2px solid var(--bs-secondary); }
+.border-success   { border: 2px solid var(--bs-success); }
+.border-danger    { border: 2px solid var(--bs-danger); }
+.border-warning   { border: 2px solid var(--bs-warning); }
+.border-info      { border: 2px solid var(--bs-info); }
+.border-light     { border: 2px solid var(--bs-light); }
+.border-dark      { border: 2px solid var(--bs-dark); }
+
+
+/* =======================
+   SUBTLE / SOFT COLORS
+   ======================= */
+.soft-primary   { background: var(--bs-primary-bg-subtle);   color: var(--bs-primary-text-emphasis); }
+.soft-secondary { background: var(--bs-secondary-bg-subtle); color: var(--bs-secondary-text-emphasis); }
+.soft-success   { background: var(--bs-success-bg-subtle);   color: var(--bs-success-text-emphasis); }
+.soft-danger    { background: var(--bs-danger-bg-subtle);    color: var(--bs-danger-text-emphasis); }
+.soft-warning   { background: var(--bs-warning-bg-subtle);   color: var(--bs-warning-text-emphasis); }
+.soft-info      { background: var(--bs-info-bg-subtle);      color: var(--bs-info-text-emphasis); }
+.soft-light     { background: var(--bs-light-bg-subtle);     color: var(--bs-light-text-emphasis); }
+.soft-dark      { background: var(--bs-dark-bg-subtle);      color: var(--bs-dark-text-emphasis); }
+
+
+/* =======================
+   TEXT EMPHASIS
+   ======================= */
+.text-primary-strong   { color: var(--bs-primary-text-emphasis); }
+.text-secondary-strong { color: var(--bs-secondary-text-emphasis); }
+.text-success-strong   { color: var(--bs-success-text-emphasis); }
+.text-danger-strong    { color: var(--bs-danger-text-emphasis); }
+.text-warning-strong   { color: var(--bs-warning-text-emphasis); }
+.text-info-strong      { color: var(--bs-info-text-emphasis); }
+.text-light-strong     { color: var(--bs-light-text-emphasis); }
+.text-dark-strong      { color: var(--bs-dark-text-emphasis); }
