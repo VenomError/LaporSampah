@@ -27,11 +27,7 @@ class AuthController extends Controller
 
         // cek apakah email sudah terverifikasi
         if (!Auth::user()->hasVerifiedEmail()) {
-            Auth::logout();
-            session()->flash('verify', true);
-            throw ValidationException::withMessages([
-                'email' => 'Email belum diverifikasi! Cek inbox kamu.',
-            ]);
+            return redirect()->route('verification.notice');
         }
 
         $role = Auth::user()->role;

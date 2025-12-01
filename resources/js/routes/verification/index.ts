@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 export const verify = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ verify.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verify.url = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
@@ -42,7 +42,7 @@ verify.url = (args: { id: string | number, hash: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verify.get = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -52,7 +52,7 @@ verify.get = (args: { id: string | number, hash: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\AuthController::verify
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verify.head = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -62,7 +62,7 @@ verify.head = (args: { id: string | number, hash: string | number } | [id: strin
 
 /**
 * @see \App\Http\Controllers\AuthController::notice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 export const notice = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -77,7 +77,7 @@ notice.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::notice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 notice.url = (options?: RouteQueryOptions) => {
@@ -86,7 +86,7 @@ notice.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::notice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 notice.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -96,7 +96,7 @@ notice.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::notice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 notice.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -106,7 +106,7 @@ notice.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::send
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 export const send = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -121,7 +121,7 @@ send.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::send
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 send.url = (options?: RouteQueryOptions) => {
@@ -130,7 +130,7 @@ send.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::send
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 send.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

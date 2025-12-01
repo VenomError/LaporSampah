@@ -18,11 +18,21 @@ enum PickUpStatus: string
     public function color()
     {
         return match ($this) {
-            self::PENDING => 'yellow',
-            self::PROCESSING => 'blue',
-            self::COMPLETED => 'green',
-            self::REJECTED => 'red',
-            self::CANCELLED => 'gray',
+            self::PENDING => 'warning',
+            self::PROCESSING => 'primary',
+            self::COMPLETED => 'success',
+            self::REJECTED => 'danger',
+            self::CANCELLED => 'secondary',
+        };
+    }
+    public function icon()
+    {
+        return match ($this) {
+            self::PENDING => 'ph ph-hourglass-low',
+            self::PROCESSING => 'ph ph-truck',
+            self::COMPLETED => 'ph ph-check-circle',
+            self::REJECTED => 'ph ph-x-circle',
+            self::CANCELLED => 'ph ph-prohibit',
         };
     }
 }

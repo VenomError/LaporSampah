@@ -26,9 +26,9 @@ const user = usePage().props.auth.user;
                         <h2 class="font-medium dark:text-white">{{ user.email }}</h2>
                         silahkan cek inbox anda !
                         </p>
-                        <p v-if="$page.props.flash.message" class="tet-sm text-success pt-3 px-4 ">
-                            {{ $page.props.flash.message }}
-                        </p>
+                        <div v-for="(value, key) in $page.props.messages.envelopes" :key="key" class="tet-sm pt-3 px-4">
+                            <p>{{ value.message }}</p>
+                        </div>
                     </div>
                     <div class=" flex " style="margin-top: 50px;">
                         <button type="submit" class="flex-1 py-3 bg-g300 text-white text-center rounded-xl"

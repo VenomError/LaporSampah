@@ -79,7 +79,7 @@ loginProcess.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ register.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ register.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -113,7 +113,7 @@ register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -123,7 +123,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::registerProcess
-* @see app/Http/Controllers/AuthController.php:45
+* @see app/Http/Controllers/AuthController.php:41
 * @route '/register'
 */
 export const registerProcess = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -138,7 +138,7 @@ registerProcess.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::registerProcess
-* @see app/Http/Controllers/AuthController.php:45
+* @see app/Http/Controllers/AuthController.php:41
 * @route '/register'
 */
 registerProcess.url = (options?: RouteQueryOptions) => {
@@ -147,7 +147,7 @@ registerProcess.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::registerProcess
-* @see app/Http/Controllers/AuthController.php:45
+* @see app/Http/Controllers/AuthController.php:41
 * @route '/register'
 */
 registerProcess.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -157,7 +157,7 @@ registerProcess.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =>
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 export const forgot = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -172,7 +172,7 @@ forgot.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.url = (options?: RouteQueryOptions) => {
@@ -181,7 +181,7 @@ forgot.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -191,7 +191,7 @@ forgot.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -201,7 +201,7 @@ forgot.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyEmail
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 export const verifyEmail = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -216,7 +216,7 @@ verifyEmail.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyEmail
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verifyEmail.url = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions) => {
@@ -242,7 +242,7 @@ verifyEmail.url = (args: { id: string | number, hash: string | number } | [id: s
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyEmail
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verifyEmail.get = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -252,7 +252,7 @@ verifyEmail.get = (args: { id: string | number, hash: string | number } | [id: s
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyEmail
-* @see app/Http/Controllers/AuthController.php:78
+* @see app/Http/Controllers/AuthController.php:74
 * @route '/email/verify/{id}/{hash}'
 */
 verifyEmail.head = (args: { id: string | number, hash: string | number } | [id: string | number, hash: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -262,7 +262,7 @@ verifyEmail.head = (args: { id: string | number, hash: string | number } | [id: 
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyNotice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 export const verifyNotice = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -277,7 +277,7 @@ verifyNotice.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyNotice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 verifyNotice.url = (options?: RouteQueryOptions) => {
@@ -286,7 +286,7 @@ verifyNotice.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyNotice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 verifyNotice.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -296,7 +296,7 @@ verifyNotice.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::verifyNotice
-* @see app/Http/Controllers/AuthController.php:73
+* @see app/Http/Controllers/AuthController.php:69
 * @route '/email/verify'
 */
 verifyNotice.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -306,7 +306,7 @@ verifyNotice.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 export const logout = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -321,7 +321,7 @@ logout.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.url = (options?: RouteQueryOptions) => {
@@ -330,7 +330,7 @@ logout.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -340,7 +340,7 @@ logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -350,7 +350,7 @@ logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::changePassword
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 export const changePassword = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -365,7 +365,7 @@ changePassword.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::changePassword
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 changePassword.url = (options?: RouteQueryOptions) => {
@@ -374,7 +374,7 @@ changePassword.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::changePassword
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 changePassword.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -384,7 +384,7 @@ changePassword.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::changePassword
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 changePassword.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -394,7 +394,7 @@ changePassword.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => 
 
 /**
 * @see \App\Http\Controllers\AuthController::updatePassword
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 export const updatePassword = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -409,7 +409,7 @@ updatePassword.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::updatePassword
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 updatePassword.url = (options?: RouteQueryOptions) => {
@@ -418,7 +418,7 @@ updatePassword.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::updatePassword
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 updatePassword.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -428,7 +428,7 @@ updatePassword.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\AuthController::resendEmail
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 export const resendEmail = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -443,7 +443,7 @@ resendEmail.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::resendEmail
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 resendEmail.url = (options?: RouteQueryOptions) => {
@@ -452,7 +452,7 @@ resendEmail.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::resendEmail
-* @see app/Http/Controllers/AuthController.php:86
+* @see app/Http/Controllers/AuthController.php:82
 * @route '/email/verification-notification'
 */
 resendEmail.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

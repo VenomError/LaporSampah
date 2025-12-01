@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Member;
 use Illuminate\Database\Eloquent\Model;
 
 class PointHistory extends Model
@@ -14,10 +15,14 @@ class PointHistory extends Model
         'point_change',
     ];
     protected $casts = [
-        'point_change' => 'decimal',
+        'point_change' => 'float',
     ];
 
     public function type(){
         return $this->morphTo();
+    }
+
+    public function member(){
+        return $this->belongsTo(Member::class);
     }
 }

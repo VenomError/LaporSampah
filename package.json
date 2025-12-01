@@ -9,15 +9,18 @@
     "devDependencies": {
         "@laravel/vite-plugin-wayfinder": "^0.1.7",
         "@tailwindcss/vite": "^4.1.17",
+        "@vue-leaflet/vue-leaflet": "^0.10.1",
         "axios": "^1.11.0",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
+        "leaflet": "^1.9.4",
         "tailwindcss": "^4.1.17",
         "vite": "^7.0.7"
     },
     "dependencies": {
         "@inertiajs/vue3": "^2.2.19",
         "@vitejs/plugin-vue": "^6.0.2",
-        "ziggy-js": "^2.6.0"
+        "ziggy-js": "^2.6.0",
+        "@flasher/flasher": "file:vendor/php-flasher/flasher/Resources"
     }
 }

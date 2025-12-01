@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:23
+* @see app/Http/Controllers/MemberController.php:56
 * @route '/change'
 */
 export const point = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ point.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:23
+* @see app/Http/Controllers/MemberController.php:56
 * @route '/change'
 */
 point.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ point.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:23
+* @see app/Http/Controllers/MemberController.php:56
 * @route '/change'
 */
 point.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ point.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:23
+* @see app/Http/Controllers/MemberController.php:56
 * @route '/change'
 */
 point.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

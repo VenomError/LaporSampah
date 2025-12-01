@@ -45,7 +45,7 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 export const register = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ register.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ register.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ register.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::register
-* @see app/Http/Controllers/AuthController.php:40
+* @see app/Http/Controllers/AuthController.php:36
 * @route '/register'
 */
 register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 export const forgot = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +104,7 @@ forgot.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ forgot.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +123,7 @@ forgot.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::forgot
-* @see app/Http/Controllers/AuthController.php:68
+* @see app/Http/Controllers/AuthController.php:64
 * @route '/forgot-password'
 */
 forgot.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -133,7 +133,7 @@ forgot.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 export const logout = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -148,7 +148,7 @@ logout.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.url = (options?: RouteQueryOptions) => {
@@ -157,7 +157,7 @@ logout.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -167,7 +167,7 @@ logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
-* @see app/Http/Controllers/AuthController.php:93
+* @see app/Http/Controllers/AuthController.php:89
 * @route '/logout'
 */
 logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -177,7 +177,7 @@ logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::home
-* @see app/Http/Controllers/MemberController.php:10
+* @see app/Http/Controllers/MemberController.php:13
 * @route '/'
 */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -192,7 +192,7 @@ home.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::home
-* @see app/Http/Controllers/MemberController.php:10
+* @see app/Http/Controllers/MemberController.php:13
 * @route '/'
 */
 home.url = (options?: RouteQueryOptions) => {
@@ -201,7 +201,7 @@ home.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::home
-* @see app/Http/Controllers/MemberController.php:10
+* @see app/Http/Controllers/MemberController.php:13
 * @route '/'
 */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -211,7 +211,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::home
-* @see app/Http/Controllers/MemberController.php:10
+* @see app/Http/Controllers/MemberController.php:13
 * @route '/'
 */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -221,7 +221,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:14
+* @see app/Http/Controllers/MemberController.php:26
 * @route '/profile'
 */
 export const profile = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -236,7 +236,7 @@ profile.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:14
+* @see app/Http/Controllers/MemberController.php:26
 * @route '/profile'
 */
 profile.url = (options?: RouteQueryOptions) => {
@@ -245,7 +245,7 @@ profile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:14
+* @see app/Http/Controllers/MemberController.php:26
 * @route '/profile'
 */
 profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -255,7 +255,7 @@ profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:14
+* @see app/Http/Controllers/MemberController.php:26
 * @route '/profile'
 */
 profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -265,7 +265,7 @@ profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:19
+* @see app/Http/Controllers/MemberController.php:31
 * @route '/history'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -280,7 +280,7 @@ history.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:19
+* @see app/Http/Controllers/MemberController.php:31
 * @route '/history'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -289,7 +289,7 @@ history.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:19
+* @see app/Http/Controllers/MemberController.php:31
 * @route '/history'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -299,7 +299,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:19
+* @see app/Http/Controllers/MemberController.php:31
 * @route '/history'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

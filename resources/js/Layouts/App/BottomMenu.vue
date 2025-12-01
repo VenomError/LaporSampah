@@ -22,7 +22,7 @@ import { route } from "@route";
         :href="route('pickup.create')"
         class="flex justify-center items-center p-3.5 bg-primary rounded-full"
       >
-        <i class="ph ph-recycle text-2xl !leading-none text-white"></i>
+        <i class="ph ph-plus text-2xl !leading-none text-white"></i>
       </Link>
       <Link
         :href="route('change.point')"

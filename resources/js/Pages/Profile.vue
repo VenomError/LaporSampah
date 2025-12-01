@@ -72,7 +72,7 @@ const user = usePage().props.auth.user;
       </div>
     </Link>
     <Link
-      href="edit-profile.html"
+      :href="route('profile.location')"
       class="flex justify-between items-center pb-5 border-b border-dashed border-n40 dark:border-darkN40 px-6"
     >
       <div class="flex justify-start items-center gap-4">

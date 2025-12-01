@@ -1,7 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
+import location9f75ed from './location'
 /**
 * @see \App\Http\Controllers\MemberController::edit
-* @see app/Http/Controllers/MemberController.php:28
+* @see app/Http/Controllers/MemberController.php:61
 * @route '/profile/edit-profile'
 */
 export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +17,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::edit
-* @see app/Http/Controllers/MemberController.php:28
+* @see app/Http/Controllers/MemberController.php:61
 * @route '/profile/edit-profile'
 */
 edit.url = (options?: RouteQueryOptions) => {
@@ -25,7 +26,7 @@ edit.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::edit
-* @see app/Http/Controllers/MemberController.php:28
+* @see app/Http/Controllers/MemberController.php:61
 * @route '/profile/edit-profile'
 */
 edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +36,7 @@ edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::edit
-* @see app/Http/Controllers/MemberController.php:28
+* @see app/Http/Controllers/MemberController.php:61
 * @route '/profile/edit-profile'
 */
 edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +46,7 @@ edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::update
-* @see app/Http/Controllers/MemberController.php:33
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +61,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::update
-* @see app/Http/Controllers/MemberController.php:33
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -69,7 +70,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::update
-* @see app/Http/Controllers/MemberController.php:33
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -77,9 +78,54 @@ update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
+/**
+* @see \App\Http\Controllers\MemberController::location
+* @see app/Http/Controllers/MemberController.php:80
+* @route '/profile/location'
+*/
+export const location = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: location.url(options),
+    method: 'get',
+})
+
+location.definition = {
+    methods: ["get","head"],
+    url: '/profile/location',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\MemberController::location
+* @see app/Http/Controllers/MemberController.php:80
+* @route '/profile/location'
+*/
+location.url = (options?: RouteQueryOptions) => {
+    return location.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\MemberController::location
+* @see app/Http/Controllers/MemberController.php:80
+* @route '/profile/location'
+*/
+location.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: location.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\MemberController::location
+* @see app/Http/Controllers/MemberController.php:80
+* @route '/profile/location'
+*/
+location.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: location.url(options),
+    method: 'head',
+})
+
 const profile = {
     edit: Object.assign(edit, edit),
     update: Object.assign(update, update),
+    location: Object.assign(location, location9f75ed),
 }
 
 export default profile

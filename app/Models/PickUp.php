@@ -14,16 +14,23 @@ class PickUp extends Model
     protected $fillable = [
         'operator_id',
         'member_id',
-        'locatio_id',
         'weight',
         'description',
         'status',
         'image',
     ];
     protected $casts = [
-        'weight' => 'decimal',
+        'weight' => 'float',
         'status' => PickUpStatus::class,
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['color','icon'];
+
 
     public function operator()
     {
@@ -42,5 +49,25 @@ class PickUp extends Model
     public function pointHistories()
     {
         return $this->morphMany(PointHistory::class, 'type');
+    }
+
+    public function getColorAttribute(): string
+    {
+        return $this->status->color();
+    }
+    public function getIconAttribute(): string
+    {
+        return $this->status->icon();
+    }
+
+    /**
+     * Scope a query to only include byStatus
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByStatus($query, PickUpStatus $status)
+    {
+        return $query->where('status', $status);
     }
 }

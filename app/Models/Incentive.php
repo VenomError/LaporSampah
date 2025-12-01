@@ -15,7 +15,7 @@ class Incentive extends Model
         'is_active',
     ];
     protected $casts = [
-        'point_required' => 'decimal:2',
+        'point_required' => 'float',
         'is_active' => 'boolean',
     ];
 }

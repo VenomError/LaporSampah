@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::change
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 export const change = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ change.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::change
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 change.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ change.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::change
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 change.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ change.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::change
-* @see app/Http/Controllers/AuthController.php:106
+* @see app/Http/Controllers/AuthController.php:102
 * @route '/change-password'
 */
 change.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ change.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:109
+* @see app/Http/Controllers/AuthController.php:105
 * @route '/change-password'
 */
 update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

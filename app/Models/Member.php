@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\PickUp;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ class Member extends Model
     ];
 
     protected $casts = [
-        'point' => 'decimal:2',
+        'point' => 'float',
     ];
 
     public function account()
@@ -28,5 +29,9 @@ class Member extends Model
     public function locations()
     {
         return $this->morphMany(Location::class, 'owner');
+    }
+
+    public function pickups(){
+        return $this->hasMany(PickUp::class);
     }
 }
