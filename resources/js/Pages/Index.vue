@@ -37,12 +37,12 @@ const user = usePage().props.auth.user;
         <div class="flex gap-3 justify-start items-center">
             <Link :href="route('pickup.create')"
                 class="bg-danger rounded-2xl p-4 flex-1  flex flex-col justify-center items-center shrink-0">
-                <div class="h-7 w-7 rounded-full bg-n0 flex justify-center items-center">
-                    <img src="@template/images/icon2.png" class="size-4" alt="" />
-                </div>
-                <p class="pt-3 text-center dark:text-n0 font-medium text-sm">
-                    Lapor Sampah
-                </p>
+            <div class="h-7 w-7 rounded-full bg-n0 flex justify-center items-center">
+                <img src="@template/images/icon2.png" class="size-4" alt="" />
+            </div>
+            <p class="pt-3 text-center dark:text-n0 font-medium text-sm">
+                Lapor Sampah
+            </p>
             </Link>
             <a href="request-money.html"
                 class="bg-success rounded-2xl p-4 flex-1  flex flex-col justify-center items-center shrink-0">
@@ -61,7 +61,7 @@ const user = usePage().props.auth.user;
             <div class="flex justify-between items-center">
                 <p class="text-xl font-semibold">History Pelaporan</p>
                 <Link :href="route('history')" class="text-g300 font-semibold text-sm">
-                    View All</Link>
+                View All</Link>
             </div>
             <PickupHistory :data="pickups" />
 

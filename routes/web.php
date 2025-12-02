@@ -20,6 +20,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/history', [MemberController::class, 'history'])->name('history');
         Route::get('/change', [MemberController::class, 'change'])->name('change.point');
         Route::get('/pick-up/create', [PickUpController::class, 'create'])->name('pickup.create');
+        Route::get('/pick-up/{pickup}/detail', [PickUpController::class, 'detail'])->name('pickup.detail');
+        Route::post('/pick-up/{pickup}/cancel', [PickUpController::class, 'cancel'])->name('pickup.cancel');
         Route::post('/pick-up/create', [PickUpController::class, 'createPickup'])->name('pickup.store');
     });
 });

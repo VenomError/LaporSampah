@@ -1,13 +1,14 @@
 <script setup>
-import { InfiniteScroll } from "@inertiajs/vue3";
+import { InfiniteScroll, Link } from "@inertiajs/vue3";
+import { route } from "@route";
 
 const props = defineProps(["data"]);
 </script>
 
 <template>
   <div class="flex flex-col gap-4 pt-6" v-for="pickup in data" :key="pickup.id">
-    <a
-
+    <Link
+      :href="route('pickup.detail', { pickup: pickup.id })"
       class="flex justify-between items-center border-b border-dashed border-n40 dark:border-darkN40 pb-4"
     >
       <div class="flex justify-start items-center gap-4">
@@ -41,6 +42,6 @@ const props = defineProps(["data"]);
           {{ pickup.status?.toUpperCase() }}
         </p>
       </div>
-    </a>
+    </Link>
   </div>
 </template>

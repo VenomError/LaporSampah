@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\PickUpStatus;
+use App\Models\PickUp;
 use Auth;
 use App\Models\Location;
 use Illuminate\Http\Request;
@@ -79,5 +81,24 @@ class PickUpController extends Controller
 
             return back();
         }
+
+    }
+    public function detail(PickUp $pickup)
+    {
+        $pickup->load([
+            'operator',
+            'operator.account',
+            'location',
+        ]);
+        return inertia('PickupDetail', [
+            'pickup' => $pickup
+        ]);
+    }
+
+    public function cancel(PickUp $pickup){
+        $pickup->status = PickUpStatus::CANCELLED;
+        $pickup->save();
+
+        return back()->with("success" , "Pickup Berhasil di Batalkan");
     }
 }

@@ -29,7 +29,11 @@ class PickUp extends Model
      *
      * @var array
      */
-    protected $appends = ['color','icon'];
+    protected $appends = [
+        'color',
+        'icon',
+        'estimate_point',
+    ];
 
 
     public function operator()
@@ -58,6 +62,10 @@ class PickUp extends Model
     public function getIconAttribute(): string
     {
         return $this->status->icon();
+    }
+    public function getEstimatePointAttribute(): float
+    {
+        return $this->weight * 10;
     }
 
     /**

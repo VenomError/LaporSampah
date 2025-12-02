@@ -1,7 +1,7 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\PickUpController::create
-* @see app/Http/Controllers/PickUpController.php:13
+* @see app/Http/Controllers/PickUpController.php:15
 * @route '/pick-up/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\PickUpController::create
-* @see app/Http/Controllers/PickUpController.php:13
+* @see app/Http/Controllers/PickUpController.php:15
 * @route '/pick-up/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PickUpController::create
-* @see app/Http/Controllers/PickUpController.php:13
+* @see app/Http/Controllers/PickUpController.php:15
 * @route '/pick-up/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\PickUpController::create
-* @see app/Http/Controllers/PickUpController.php:13
+* @see app/Http/Controllers/PickUpController.php:15
 * @route '/pick-up/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +44,134 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\PickUpController::detail
+* @see app/Http/Controllers/PickUpController.php:86
+* @route '/pick-up/{pickup}/detail'
+*/
+export const detail = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: detail.url(args, options),
+    method: 'get',
+})
+
+detail.definition = {
+    methods: ["get","head"],
+    url: '/pick-up/{pickup}/detail',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\PickUpController::detail
+* @see app/Http/Controllers/PickUpController.php:86
+* @route '/pick-up/{pickup}/detail'
+*/
+detail.url = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { pickup: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { pickup: args.id }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            pickup: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        pickup: typeof args.pickup === 'object'
+        ? args.pickup.id
+        : args.pickup,
+    }
+
+    return detail.definition.url
+            .replace('{pickup}', parsedArgs.pickup.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PickUpController::detail
+* @see app/Http/Controllers/PickUpController.php:86
+* @route '/pick-up/{pickup}/detail'
+*/
+detail.get = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: detail.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\PickUpController::detail
+* @see app/Http/Controllers/PickUpController.php:86
+* @route '/pick-up/{pickup}/detail'
+*/
+detail.head = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: detail.url(args, options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\PickUpController::cancel
+* @see app/Http/Controllers/PickUpController.php:98
+* @route '/pick-up/{pickup}/cancel'
+*/
+export const cancel = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: cancel.url(args, options),
+    method: 'post',
+})
+
+cancel.definition = {
+    methods: ["post"],
+    url: '/pick-up/{pickup}/cancel',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\PickUpController::cancel
+* @see app/Http/Controllers/PickUpController.php:98
+* @route '/pick-up/{pickup}/cancel'
+*/
+cancel.url = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { pickup: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { pickup: args.id }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            pickup: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        pickup: typeof args.pickup === 'object'
+        ? args.pickup.id
+        : args.pickup,
+    }
+
+    return cancel.definition.url
+            .replace('{pickup}', parsedArgs.pickup.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PickUpController::cancel
+* @see app/Http/Controllers/PickUpController.php:98
+* @route '/pick-up/{pickup}/cancel'
+*/
+cancel.post = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: cancel.url(args, options),
+    method: 'post',
+})
+
+/**
 * @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:19
+* @see app/Http/Controllers/PickUpController.php:21
 * @route '/pick-up/create'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +186,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:19
+* @see app/Http/Controllers/PickUpController.php:21
 * @route '/pick-up/create'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -69,7 +195,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:19
+* @see app/Http/Controllers/PickUpController.php:21
 * @route '/pick-up/create'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -79,6 +205,8 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 const pickup = {
     create: Object.assign(create, create),
+    detail: Object.assign(detail, detail),
+    cancel: Object.assign(cancel, cancel),
     store: Object.assign(store, store),
 }
 

@@ -22,7 +22,7 @@ enum PickUpStatus: string
             self::PROCESSING => 'primary',
             self::COMPLETED => 'success',
             self::REJECTED => 'danger',
-            self::CANCELLED => 'secondary',
+            self::CANCELLED => 'danger',
         };
     }
     public function icon()
