@@ -23,8 +23,10 @@ class MemberController extends Controller
             ->latest()
             ->get()
             ->take(5);
+        $hasNotifications = auth()->user()->unreadNotifications()->exists();
         return inertia('Index', [
-            'pickups' => $pickups
+            'pickups' => $pickups,
+            'hasNotifications' => $hasNotifications
         ]);
     }
     public function profile()

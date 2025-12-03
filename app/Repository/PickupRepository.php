@@ -7,6 +7,9 @@ use App\Models\Location;
 use App\Models\Member;
 use App\Models\PickUp;
 use App\Models\PointHistory;
+use App\Notifications\PickupNotification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class PickupRepository
 {
@@ -18,11 +21,6 @@ class PickupRepository
         $pickup->status = PickUpStatus::PENDING;
         $pickup->save();
 
-        $history = new PointHistory();
-        $history->member()->associate($member);
-        $history->point_change = $member->point;
-        $pickup->pointHistories()->save($history);
-
         if ($locationData instanceof Location) {
             $location = $locationData->replicate(['owner_id', 'owner_type', 'id', 'created_at', 'updated_at']);
         } else {
@@ -32,6 +30,9 @@ class PickupRepository
 
         $pickup->location()->save($location);
 
+        // Notification
+        $user = Auth::user();
+        $user->notify(new PickupNotification($pickup, "Laporan Sampah anda Berhasil di Kirim"));
         return $pickup;
     }
 }

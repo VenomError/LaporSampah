@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 export const detail = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ detail.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 detail.url = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -43,7 +43,7 @@ detail.url = (args: { point_history: string | number } | [point_history: string 
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 detail.get = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -53,7 +53,7 @@ detail.get = (args: { point_history: string | number } | [point_history: string 
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 detail.head = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

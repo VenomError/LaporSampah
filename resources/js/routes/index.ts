@@ -221,7 +221,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 export const profile = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -236,7 +236,7 @@ profile.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.url = (options?: RouteQueryOptions) => {
@@ -245,7 +245,7 @@ profile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -255,7 +255,7 @@ profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -265,7 +265,7 @@ profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -280,7 +280,7 @@ history.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -289,7 +289,7 @@ history.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -299,11 +299,55 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: history.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\NotificationController::notifications
+* @see app/Http/Controllers/NotificationController.php:10
+* @route '/notifications'
+*/
+export const notifications = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: notifications.url(options),
+    method: 'get',
+})
+
+notifications.definition = {
+    methods: ["get","head"],
+    url: '/notifications',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\NotificationController::notifications
+* @see app/Http/Controllers/NotificationController.php:10
+* @route '/notifications'
+*/
+notifications.url = (options?: RouteQueryOptions) => {
+    return notifications.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\NotificationController::notifications
+* @see app/Http/Controllers/NotificationController.php:10
+* @route '/notifications'
+*/
+notifications.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: notifications.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\NotificationController::notifications
+* @see app/Http/Controllers/NotificationController.php:10
+* @route '/notifications'
+*/
+notifications.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: notifications.url(options),
     method: 'head',
 })
 

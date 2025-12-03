@@ -2,10 +2,13 @@
 
 namespace App\Repository;
 
+use App\Enum\PointReedemedStatus;
 use App\Models\Incentive;
 use App\Models\Member;
 use App\Models\PointHistory;
 use App\Models\PointReedmtion;
+use App\Notifications\PointChangeNotification;
+use Auth;
 
 class IncentiveRepository
 {
@@ -31,9 +34,12 @@ class IncentiveRepository
 
         $pointReedemtion = new PointReedmtion();
         $pointReedemtion->point_reedemed = $pointReedemed;
+        $pointReedemtion->status = PointReedemedStatus::SUBMITTED;
         $pointReedemtion->member()->associate($member);
         $pointReedemtion->incentive()->associate($incentive);
         $pointReedemtion->save();
+
+        Auth::user()->notify(new PointChangeNotification($pointReedemtion, "Request Penukaran Point Anda Berhasil Terkirim dan menunggu Konfirmasi dari Admin"));
 
         $pointHistory = new PointHistory();
         $pointHistory->member()->associate($member);

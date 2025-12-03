@@ -45,7 +45,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 export const profile = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ profile.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ profile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ profile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::profile
-* @see app/Http/Controllers/MemberController.php:30
+* @see app/Http/Controllers/MemberController.php:32
 * @route '/profile'
 */
 profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ profile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::editProfile
-* @see app/Http/Controllers/MemberController.php:64
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 export const editProfile = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +104,7 @@ editProfile.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::editProfile
-* @see app/Http/Controllers/MemberController.php:64
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 editProfile.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ editProfile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::editProfile
-* @see app/Http/Controllers/MemberController.php:64
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 editProfile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +123,7 @@ editProfile.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::editProfile
-* @see app/Http/Controllers/MemberController.php:64
+* @see app/Http/Controllers/MemberController.php:66
 * @route '/profile/edit-profile'
 */
 editProfile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -133,7 +133,7 @@ editProfile.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::updateProfile
-* @see app/Http/Controllers/MemberController.php:69
+* @see app/Http/Controllers/MemberController.php:71
 * @route '/profile/edit-profile'
 */
 export const updateProfile = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -148,7 +148,7 @@ updateProfile.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::updateProfile
-* @see app/Http/Controllers/MemberController.php:69
+* @see app/Http/Controllers/MemberController.php:71
 * @route '/profile/edit-profile'
 */
 updateProfile.url = (options?: RouteQueryOptions) => {
@@ -157,7 +157,7 @@ updateProfile.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::updateProfile
-* @see app/Http/Controllers/MemberController.php:69
+* @see app/Http/Controllers/MemberController.php:71
 * @route '/profile/edit-profile'
 */
 updateProfile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -167,7 +167,7 @@ updateProfile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 /**
 * @see \App\Http\Controllers\MemberController::location
-* @see app/Http/Controllers/MemberController.php:83
+* @see app/Http/Controllers/MemberController.php:85
 * @route '/profile/location'
 */
 export const location = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -182,7 +182,7 @@ location.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::location
-* @see app/Http/Controllers/MemberController.php:83
+* @see app/Http/Controllers/MemberController.php:85
 * @route '/profile/location'
 */
 location.url = (options?: RouteQueryOptions) => {
@@ -191,7 +191,7 @@ location.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::location
-* @see app/Http/Controllers/MemberController.php:83
+* @see app/Http/Controllers/MemberController.php:85
 * @route '/profile/location'
 */
 location.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -201,7 +201,7 @@ location.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::location
-* @see app/Http/Controllers/MemberController.php:83
+* @see app/Http/Controllers/MemberController.php:85
 * @route '/profile/location'
 */
 location.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -211,7 +211,7 @@ location.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::locationAdd
-* @see app/Http/Controllers/MemberController.php:91
+* @see app/Http/Controllers/MemberController.php:93
 * @route '/profile/location'
 */
 export const locationAdd = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -226,7 +226,7 @@ locationAdd.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::locationAdd
-* @see app/Http/Controllers/MemberController.php:91
+* @see app/Http/Controllers/MemberController.php:93
 * @route '/profile/location'
 */
 locationAdd.url = (options?: RouteQueryOptions) => {
@@ -235,7 +235,7 @@ locationAdd.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::locationAdd
-* @see app/Http/Controllers/MemberController.php:91
+* @see app/Http/Controllers/MemberController.php:93
 * @route '/profile/location'
 */
 locationAdd.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -245,7 +245,7 @@ locationAdd.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 export const history = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -260,7 +260,7 @@ history.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.url = (options?: RouteQueryOptions) => {
@@ -269,7 +269,7 @@ history.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -279,7 +279,7 @@ history.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::history
-* @see app/Http/Controllers/MemberController.php:35
+* @see app/Http/Controllers/MemberController.php:37
 * @route '/history'
 */
 history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -289,7 +289,7 @@ history.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::pointHistoryDetail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 export const pointHistoryDetail = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -304,7 +304,7 @@ pointHistoryDetail.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::pointHistoryDetail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 pointHistoryDetail.url = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -331,7 +331,7 @@ pointHistoryDetail.url = (args: { point_history: string | number } | [point_hist
 
 /**
 * @see \App\Http\Controllers\MemberController::pointHistoryDetail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 pointHistoryDetail.get = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -341,7 +341,7 @@ pointHistoryDetail.get = (args: { point_history: string | number } | [point_hist
 
 /**
 * @see \App\Http\Controllers\MemberController::pointHistoryDetail
-* @see app/Http/Controllers/MemberController.php:128
+* @see app/Http/Controllers/MemberController.php:130
 * @route '/history/point-history/{point_history}/detail'
 */
 pointHistoryDetail.head = (args: { point_history: string | number } | [point_history: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -351,7 +351,7 @@ pointHistoryDetail.head = (args: { point_history: string | number } | [point_his
 
 /**
 * @see \App\Http\Controllers\MemberController::change
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 export const change = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -366,7 +366,7 @@ change.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::change
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 change.url = (options?: RouteQueryOptions) => {
@@ -375,7 +375,7 @@ change.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::change
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 change.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -385,7 +385,7 @@ change.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::change
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 change.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -395,7 +395,7 @@ change.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::changeIncentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 export const changeIncentive = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -410,7 +410,7 @@ changeIncentive.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::changeIncentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 changeIncentive.url = (options?: RouteQueryOptions) => {
@@ -419,7 +419,7 @@ changeIncentive.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::changeIncentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 changeIncentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -429,7 +429,7 @@ changeIncentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =>
 
 /**
 * @see \App\Http\Controllers\MemberController::changeDetail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 export const changeDetail = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -444,7 +444,7 @@ changeDetail.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::changeDetail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 changeDetail.url = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -471,7 +471,7 @@ changeDetail.url = (args: { point_reedemtion: string | number } | [point_reedemt
 
 /**
 * @see \App\Http\Controllers\MemberController::changeDetail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 changeDetail.get = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -481,7 +481,7 @@ changeDetail.get = (args: { point_reedemtion: string | number } | [point_reedemt
 
 /**
 * @see \App\Http\Controllers\MemberController::changeDetail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 changeDetail.head = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({

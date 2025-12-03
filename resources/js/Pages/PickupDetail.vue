@@ -7,8 +7,8 @@ const props = defineProps(["pickup"]);
 <template>
     <HeaderTitle href="history" title="Detail Laporan" />
     <div class="pt-8 flex justify-center items-center flex-col">
-        <p class="text-[52px] font-bold flex justify-start pt-2">
-            {{ Number(pickup.estimate_point).toLocaleString() }}
+        <p class="text-[52px] font-bold flex justify-start pt-2 text-success">
+            + {{ Number(pickup.estimate_point).toLocaleString() }}
         </p>
         <p class="text-sm font-semibold pt-3">Estimasi Point</p>
     </div>

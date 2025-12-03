@@ -21,4 +21,12 @@ enum PointReedemedStatus: string
             self::REJECTED => 'danger',
         };
     }
+    public function icon()
+    {
+        return match ($this) {
+            self::SUBMITTED => 'ph ph-clock-user',
+            self::APPORVED => 'ph ph-check-circle',
+            self::REJECTED => 'ph ph-x-circle',
+        };
+    }
 }

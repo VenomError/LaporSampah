@@ -79,7 +79,7 @@ class PickUpController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            return back();
+            return back()->with('error', $th->getMessage());
         }
 
     }
@@ -95,10 +95,11 @@ class PickUpController extends Controller
         ]);
     }
 
-    public function cancel(PickUp $pickup){
+    public function cancel(PickUp $pickup)
+    {
         $pickup->status = PickUpStatus::CANCELLED;
         $pickup->save();
 
-        return back()->with("success" , "Pickup Berhasil di Batalkan");
+        return back()->with("success", "Pickup Berhasil di Batalkan");
     }
 }

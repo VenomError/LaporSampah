@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PickUpController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/pick-up/create', [PickUpController::class, 'createPickup'])->name('pickup.store');
         Route::get('/pick-up/{pickup}/detail', [PickUpController::class, 'detail'])->name('pickup.detail');
         Route::post('/pick-up/{pickup}/cancel', action: [PickUpController::class, 'cancel'])->name('pickup.cancel');
+
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 
     });
 });

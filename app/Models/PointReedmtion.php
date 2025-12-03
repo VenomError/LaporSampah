@@ -28,7 +28,7 @@ class PointReedmtion extends Model
      *
      * @var array
      */
-    protected $appends = ['color'];
+    protected $appends = ['color', 'icon'];
 
     public function member()
     {
@@ -46,5 +46,9 @@ class PointReedmtion extends Model
     public function getColorAttribute(): string
     {
         return $this->status->color();
+    }
+    public function getIconAttribute(): string
+    {
+        return $this->status->icon();
     }
 }

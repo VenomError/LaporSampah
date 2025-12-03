@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 export const point = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ point.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 point.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ point.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 point.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ point.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::point
-* @see app/Http/Controllers/MemberController.php:47
+* @see app/Http/Controllers/MemberController.php:49
 * @route '/change'
 */
 point.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ point.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::incentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 export const incentive = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ incentive.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::incentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 incentive.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ incentive.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::incentive
-* @see app/Http/Controllers/MemberController.php:106
+* @see app/Http/Controllers/MemberController.php:108
 * @route '/change'
 */
 incentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -79,7 +79,7 @@ incentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 export const detail = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ detail.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 detail.url = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -121,7 +121,7 @@ detail.url = (args: { point_reedemtion: string | number } | [point_reedemtion: s
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 detail.get = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -131,7 +131,7 @@ detail.get = (args: { point_reedemtion: string | number } | [point_reedemtion: s
 
 /**
 * @see \App\Http\Controllers\MemberController::detail
-* @see app/Http/Controllers/MemberController.php:122
+* @see app/Http/Controllers/MemberController.php:124
 * @route '/change/{point_reedemtion}/detail'
 */
 detail.head = (args: { point_reedemtion: string | number } | [point_reedemtion: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
