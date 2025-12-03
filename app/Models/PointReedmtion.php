@@ -19,18 +19,32 @@ class PointReedmtion extends Model
     ];
 
     protected $casts = [
-        'point_reedemed' => 'decimal',
+        'point_reedemed' => 'float',
         'status' => PointReedemedStatus::class,
     ];
 
-    public function member(){
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['color'];
+
+    public function member()
+    {
         return $this->belongsTo(Member::class);
     }
-    public function incentive(){
+    public function incentive()
+    {
         return $this->belongsTo(Incentive::class);
     }
     public function pointHistories()
     {
         return $this->morphMany(PointHistory::class, 'type');
+    }
+
+    public function getColorAttribute(): string
+    {
+        return $this->status->color();
     }
 }

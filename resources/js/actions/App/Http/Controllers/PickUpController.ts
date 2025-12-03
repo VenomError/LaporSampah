@@ -44,6 +44,40 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\PickUpController::createPickup
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+export const createPickup = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: createPickup.url(options),
+    method: 'post',
+})
+
+createPickup.definition = {
+    methods: ["post"],
+    url: '/pick-up/create',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\PickUpController::createPickup
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+createPickup.url = (options?: RouteQueryOptions) => {
+    return createPickup.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PickUpController::createPickup
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+createPickup.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: createPickup.url(options),
+    method: 'post',
+})
+
+/**
 * @see \App\Http\Controllers\PickUpController::detail
 * @see app/Http/Controllers/PickUpController.php:86
 * @route '/pick-up/{pickup}/detail'
@@ -169,40 +203,6 @@ cancel.post = (args: { pickup: number | { id: number } } | [pickup: number | { i
     method: 'post',
 })
 
-/**
-* @see \App\Http\Controllers\PickUpController::createPickup
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-export const createPickup = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: createPickup.url(options),
-    method: 'post',
-})
-
-createPickup.definition = {
-    methods: ["post"],
-    url: '/pick-up/create',
-} satisfies RouteDefinition<["post"]>
-
-/**
-* @see \App\Http\Controllers\PickUpController::createPickup
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-createPickup.url = (options?: RouteQueryOptions) => {
-    return createPickup.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\PickUpController::createPickup
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-createPickup.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: createPickup.url(options),
-    method: 'post',
-})
-
-const PickUpController = { create, detail, cancel, createPickup }
+const PickUpController = { create, createPickup, detail, cancel }
 
 export default PickUpController

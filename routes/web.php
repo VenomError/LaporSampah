@@ -17,11 +17,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/profile/edit-profile', [MemberController::class, 'updateProfile'])->name('profile.update');
         Route::get('/profile/location', [MemberController::class, 'location'])->name('profile.location');
         Route::post('/profile/location', [MemberController::class, 'locationAdd'])->name('profile.location.add');
+
         Route::get('/history', [MemberController::class, 'history'])->name('history');
+        Route::get('/history/point-history/{point_history}/detail', [MemberController::class, 'pointHistoryDetail'])->name('point.history.detail');
+
         Route::get('/change', [MemberController::class, 'change'])->name('change.point');
+        Route::post('/change', [MemberController::class, 'changeIncentive'])->name('change.incentive');
+        Route::get('/change/{point_reedemtion}/detail', [MemberController::class, 'changeDetail'])->name('change.detail');
+
         Route::get('/pick-up/create', [PickUpController::class, 'create'])->name('pickup.create');
-        Route::get('/pick-up/{pickup}/detail', [PickUpController::class, 'detail'])->name('pickup.detail');
-        Route::post('/pick-up/{pickup}/cancel', [PickUpController::class, 'cancel'])->name('pickup.cancel');
         Route::post('/pick-up/create', [PickUpController::class, 'createPickup'])->name('pickup.store');
+        Route::get('/pick-up/{pickup}/detail', [PickUpController::class, 'detail'])->name('pickup.detail');
+        Route::post('/pick-up/{pickup}/cancel', action: [PickUpController::class, 'cancel'])->name('pickup.cancel');
+
     });
 });

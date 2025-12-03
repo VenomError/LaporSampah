@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Enum\PickUpStatus;
-use App\Models\PickUp;
-use Auth;
+use App\Models\PointHistory;
+use App\Models\PointReedmtion;
+use App\Repository\IncentiveRepository;
 use Inertia\Inertia;
+use App\Models\PickUp;
+use App\Models\Incentive;
+use App\Enum\PickUpStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -30,32 +34,31 @@ class MemberController extends Controller
 
     public function history()
     {
-        $query = PickUp::query();
-        $query->with([
-            'location',
-        ]);
-        $query->where('member_id', auth()->user()->member->id);
-        $query->latest();
-
-        $counts = [];
-
-        foreach (PickUpStatus::cases() as $status) {
-            $counts[$status->value] = [
-                'color' => $status->color(),
-                'count' => (clone $query)
-                    ->byStatus($status)
-                    ->count(),
-            ];
-        }
+        $member = Auth::user()->member;
+        $pickups = $member->pickups()->with(['location'])->latest()->paginate();
+        $changeIncentive = $member->reedemtions()->with(['incentive'])->latest()->paginate();
+        $pointHistory = $member->pointHistories()->with(['type'])->latest()->paginate();
         return Inertia::render('PickUpHistory', [
-            'pickups' => Inertia::scroll(fn() => (clone $query)->paginate()),
-            'counts' => $counts,
-            'all' => (clone $query)->count()
+            'pickups' => Inertia::scroll(fn() => $pickups),
+            'changeIncentives' => Inertia::scroll(fn() => $changeIncentive),
+            'pointHistories' => Inertia::scroll(fn() => $pointHistory),
         ]);
     }
     public function change()
     {
-        return inertia('ChangePoint');
+        $query = Incentive::orderBy('point_required')->active();
+
+        if (request()->filled('search')) {
+            $search = request('search');
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        $incentives = $query->paginate()->withQueryString();
+
+        return inertia('ChangePoint', [
+            'incentives' => inertia()->scroll(fn() => $incentives),
+            'filters' => request()->only('search'),
+        ]);
     }
 
     public function editProfile()
@@ -98,6 +101,37 @@ class MemberController extends Controller
         $member->locations()->create($data);
 
         return back()->with('success', 'Data Lokasi Berhasil di Tambah');
+    }
+
+    public function changeIncentive(Request $request)
+    {
+        $request->validate([
+            'incentive_id' => 'required|exists:incentives,id'
+        ]);
+        $incentive = Incentive::find($request->incentive_id);
+        $member = Auth::user()->member;
+        try {
+            $repo = new IncentiveRepository();
+            $repo->reedemed($incentive, $member);
+            return back()->with('success', 'Berhasil Tukar Point');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function changeDetail(PointReedmtion $pointReedemtion)
+    {
+        $pointReedemtion->load(['incentive']);
+        return inertia('ChangeDetail', compact('pointReedemtion'));
+    }
+
+    public function pointHistoryDetail(PointHistory $pointHistory)
+    {
+        if ($pointHistory->type_type == "App\\Models\\PointReedmtion") {
+            return redirect()->route('change.detail', ['point_reedemtion' => $pointHistory->type_id]);
+        } else {
+            return redirect()->route('pickup.detail', ['pickup' => $pointHistory->type_id]);
+        }
     }
 
 }

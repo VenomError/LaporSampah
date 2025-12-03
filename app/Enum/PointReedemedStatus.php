@@ -8,15 +8,17 @@ enum PointReedemedStatus: string
     case APPORVED = 'approved';
     case REJECTED = 'rejected';
 
-    public static function values(){
+    public static function values()
+    {
         return array_column(self::cases(), 'value');
     }
 
-    public function color(){
+    public function color()
+    {
         return match ($this) {
-            self::SUBMITTED => 'blue',
-            self::APPORVED => 'greed',
-            self::REJECTED => 'red',
+            self::SUBMITTED => 'primary',
+            self::APPORVED => 'success',
+            self::REJECTED => 'danger',
         };
     }
 }

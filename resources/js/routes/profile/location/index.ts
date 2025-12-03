@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\MemberController::add
-* @see app/Http/Controllers/MemberController.php:88
+* @see app/Http/Controllers/MemberController.php:91
 * @route '/profile/location'
 */
 export const add = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ add.definition = {
 
 /**
 * @see \App\Http\Controllers\MemberController::add
-* @see app/Http/Controllers/MemberController.php:88
+* @see app/Http/Controllers/MemberController.php:91
 * @route '/profile/location'
 */
 add.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ add.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\MemberController::add
-* @see app/Http/Controllers/MemberController.php:88
+* @see app/Http/Controllers/MemberController.php:91
 * @route '/profile/location'
 */
 add.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

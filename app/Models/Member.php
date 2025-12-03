@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\PickUp;
 use App\Models\Location;
+use App\Models\PointHistory;
+use App\Models\PointReedmtion;
 use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
@@ -31,7 +33,18 @@ class Member extends Model
         return $this->morphMany(Location::class, 'owner');
     }
 
-    public function pickups(){
+    public function pickups()
+    {
         return $this->hasMany(PickUp::class);
+    }
+
+    public function reedemtions()
+    {
+        return $this->hasMany(PointReedmtion::class);
+    }
+
+    public function pointHistories()
+    {
+        return $this->hasMany(PointHistory::class);
     }
 }

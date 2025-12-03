@@ -44,7 +44,7 @@ const user = usePage().props.auth.user;
                 Lapor Sampah
             </p>
             </Link>
-            <a href="request-money.html"
+            <Link :href="route('change.point')"
                 class="bg-success rounded-2xl p-4 flex-1  flex flex-col justify-center items-center shrink-0">
                 <div class="h-7 w-7 rounded-full bg-n0 flex justify-center items-center">
                     <img src="@template/images/icon3.png" class="size-4" alt="" />
@@ -52,7 +52,7 @@ const user = usePage().props.auth.user;
                 <p class="pt-3 text-center dark:text-n0 font-medium text-sm">
                     Tukar Poin
                 </p>
-            </a>
+            </Link>
 
         </div>
     </div>

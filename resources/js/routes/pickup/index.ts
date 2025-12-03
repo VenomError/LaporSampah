@@ -44,6 +44,40 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\PickUpController::store
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+store.definition = {
+    methods: ["post"],
+    url: '/pick-up/create',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\PickUpController::store
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+store.url = (options?: RouteQueryOptions) => {
+    return store.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PickUpController::store
+* @see app/Http/Controllers/PickUpController.php:21
+* @route '/pick-up/create'
+*/
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+/**
 * @see \App\Http\Controllers\PickUpController::detail
 * @see app/Http/Controllers/PickUpController.php:86
 * @route '/pick-up/{pickup}/detail'
@@ -169,45 +203,11 @@ cancel.post = (args: { pickup: number | { id: number } } | [pickup: number | { i
     method: 'post',
 })
 
-/**
-* @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
-    method: 'post',
-})
-
-store.definition = {
-    methods: ["post"],
-    url: '/pick-up/create',
-} satisfies RouteDefinition<["post"]>
-
-/**
-* @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-store.url = (options?: RouteQueryOptions) => {
-    return store.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\PickUpController::store
-* @see app/Http/Controllers/PickUpController.php:21
-* @route '/pick-up/create'
-*/
-store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
-    method: 'post',
-})
-
 const pickup = {
     create: Object.assign(create, create),
+    store: Object.assign(store, store),
     detail: Object.assign(detail, detail),
     cancel: Object.assign(cancel, cancel),
-    store: Object.assign(store, store),
 }
 
 export default pickup
