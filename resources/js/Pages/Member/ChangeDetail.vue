@@ -1,7 +1,5 @@
 <script setup>
 import HeaderTitle from "@components/HeaderTitle.vue";
-import { Link } from "@inertiajs/vue3";
-import { route } from "@route";
 const props = defineProps(["pointReedemtion"]);
 
 

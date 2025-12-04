@@ -15,7 +15,7 @@ class PickUpController extends Controller
     public function create()
     {
         $locations = Auth::user()->member->locations->toArray();
-        return inertia('PickUpCreate', compact('locations'));
+        return inertia('Member/PickUpCreate', compact('locations'));
     }
 
     public function createPickup(Request $request, PickupRepository $repository)
@@ -90,7 +90,7 @@ class PickUpController extends Controller
             'operator.account',
             'location',
         ]);
-        return inertia('PickupDetail', [
+        return inertia('Member/PickupDetail', [
             'pickup' => $pickup
         ]);
     }

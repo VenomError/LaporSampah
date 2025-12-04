@@ -99,10 +99,12 @@ class AuthController extends Controller
         return redirect()->route('login')
             ->with('message', 'You have been logged out.');
     }
-    public function changePassword(){
+    public function changePassword()
+    {
         return inertia('Setting/ChangePassword');
     }
-    public function updatePassword(Request $request){
+    public function updatePassword(Request $request)
+    {
         $request->validate([
             'password' => 'required|current_password',
             'new_password' => 'required'

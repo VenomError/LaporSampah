@@ -24,14 +24,14 @@ class MemberController extends Controller
             ->get()
             ->take(5);
         $hasNotifications = auth()->user()->unreadNotifications()->exists();
-        return inertia('Index', [
+        return inertia('Member/Index', [
             'pickups' => $pickups,
             'hasNotifications' => $hasNotifications
         ]);
     }
     public function profile()
     {
-        return inertia('Profile');
+        return inertia('Member/Profile');
     }
 
     public function history()
@@ -40,7 +40,7 @@ class MemberController extends Controller
         $pickups = $member->pickups()->with(['location'])->latest()->paginate();
         $changeIncentive = $member->reedemtions()->with(['incentive'])->latest()->paginate();
         $pointHistory = $member->pointHistories()->with(['type'])->latest()->paginate();
-        return Inertia::render('PickUpHistory', [
+        return Inertia::render('Member/PickUpHistory', [
             'pickups' => Inertia::scroll(fn() => $pickups),
             'changeIncentives' => Inertia::scroll(fn() => $changeIncentive),
             'pointHistories' => Inertia::scroll(fn() => $pointHistory),
@@ -57,7 +57,7 @@ class MemberController extends Controller
 
         $incentives = $query->paginate()->withQueryString();
 
-        return inertia('ChangePoint', [
+        return inertia('Member/ChangePoint', [
             'incentives' => inertia()->scroll(fn() => $incentives),
             'filters' => request()->only('search'),
         ]);
@@ -65,7 +65,7 @@ class MemberController extends Controller
 
     public function editProfile()
     {
-        return inertia('Setting/EditProfile');
+        return inertia('Member/Setting/EditProfile');
     }
 
     public function updateProfile(Request $request)
@@ -85,7 +85,7 @@ class MemberController extends Controller
     public function location()
     {
         $locations = auth()->user()->member->locations;
-        return inertia('Setting/Location', [
+        return inertia('Member/Setting/Location', [
             'locations' => $locations
         ]);
     }
@@ -124,7 +124,7 @@ class MemberController extends Controller
     public function changeDetail(PointReedmtion $pointReedemtion)
     {
         $pointReedemtion->load(['incentive']);
-        return inertia('ChangeDetail', compact('pointReedemtion'));
+        return inertia('Member/ChangeDetail', compact('pointReedemtion'));
     }
 
     public function pointHistoryDetail(PointHistory $pointHistory)

@@ -2,11 +2,10 @@
 import HeaderTitle from "@components/HeaderTitle.vue";
 import ButtonSubmit from "@components/ButtonSubmit.vue";
 import MapTracking from "@components/MapTracking.vue";
-import FlashMessage from "@components/FlashMessage.vue";
 import Input from "@components/Input.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { route } from "@route";
-import InputTextarea from "../Components/InputTextarea.vue";
+import InputTextarea from "@components/InputTextarea.vue";
 
 const page = usePage();
 const userMember = page.props.auth.user.member;

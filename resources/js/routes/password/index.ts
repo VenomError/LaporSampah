@@ -45,7 +45,7 @@ change.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:105
+* @see app/Http/Controllers/AuthController.php:106
 * @route '/change-password'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:105
+* @see app/Http/Controllers/AuthController.php:106
 * @route '/change-password'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::update
-* @see app/Http/Controllers/AuthController.php:105
+* @see app/Http/Controllers/AuthController.php:106
 * @route '/change-password'
 */
 update.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

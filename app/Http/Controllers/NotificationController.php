@@ -10,7 +10,7 @@ class NotificationController extends Controller
     public function index()
     {
         $notifications = auth()->user()->unreadNotifications()->latest()->get()->groupBy(fn($q) => $q->created_at->translatedFormat('D, M d-Y'));
-        return inertia('Notifications', [
+        return inertia('Member/Notifications', [
             'notifications' => $notifications
         ]);
     }
