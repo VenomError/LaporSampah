@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Enum\PickUpStatus;
 use App\Models\Member;
+use App\Models\PickUp;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,14 +53,18 @@ class HandleInertiaRequests extends Middleware
         return [
             'dashboard' => 10,
             'point_reedemtion' => 2,
-            'pickup' => [
-                'pending' => 5,
-                'processing' => 3,
-                'completed' => 20,
-                'rejected' => 2,
-                'cancelled' => 1
-            ]
+            'pickup' => $this->getPickupCount()
         ];
+    }
+
+    public function getPickupCount(): array
+    {
+        $pending = PickUp::whereStatus(PickUpStatus::PENDING)->count();
+        $processing = PickUp::whereStatus(PickUpStatus::PROCESSING)->count();
+        $completed = PickUp::whereStatus(PickUpStatus::COMPLETED)->whereDate('created_at', now())->count();
+        $rejected = PickUp::whereStatus(PickUpStatus::REJECTED)->count();
+        $cancelled = PickUp::whereStatus(PickUpStatus::CANCELLED)->count();
+        return compact('pending', 'processing', 'completed', 'rejected', 'cancelled');
     }
 
 }
