@@ -42,7 +42,22 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'count' => $this->getNavigationCounts()
         ]);
+    }
+
+    public function getNavigationCounts(): array
+    {
+        return [
+            'dashboard' => 10,
+            'pickup' => [
+                'pending' => 5,
+                'processing' => 3,
+                'completed' => 20,
+                'rejected' => 2,
+                'cancelled' => 1
+            ]
+        ];
     }
 
 }

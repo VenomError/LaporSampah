@@ -10,7 +10,12 @@ export default defineConfig({
         wayfinder(),
         vue(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/css/app.css',
+                'resources/css/dashboard.css',
+                'resources/js/app.js',
+                'resources/js/dashboard.js'
+            ],
             refresh: true,
         })
     ],
