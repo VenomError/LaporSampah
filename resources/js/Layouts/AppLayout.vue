@@ -1,4 +1,6 @@
 <script>
+import '../../css/app.css';
+import '../../template/js/main.js';
 import flasher from "@flasher/flasher";
 import BottomMenu from "./App/BottomMenu.vue";
 

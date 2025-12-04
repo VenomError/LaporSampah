@@ -1,6 +1,5 @@
-import '../css/app.css';
+
 import './bootstrap';
-import '../template/js/main.js';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { Ziggy } from './ziggy.js';
