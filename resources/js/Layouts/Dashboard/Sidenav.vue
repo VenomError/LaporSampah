@@ -9,13 +9,20 @@ const count = usePage().props.count;
 const navigations = {
   dashboard: [
     addNav(route("dashboard"), "Dashboard", "dashboard", [], count?.dashboard),
-    addNav(route("dashboard"), "Lokasi Penjemputan", "map-pins", []),
-    addNav(route("dashboard"), "Lokasi Member", "user-pin", []),
+    addNav(
+      route("dashboard.point.reedemtion"),
+      "Penukaran Point",
+      "transfer",
+      [],
+      count?.point_reedemtion
+    ),
+    addNav(route("dashboard.pickup.location"), "Lokasi Penjemputan", "map-pins", []),
+    addNav(route("dashboard.member.location"), "Lokasi Member", "user-pin", []),
   ],
   penjemputan: [
-    addNav(route("dashboard"), "Daftar Penjemputan", "list", []),
+    addNav(route("dashboard.pickup.list"), "Daftar Penjemputan", "list", []),
     addNav(
-      route("dashboard"),
+      route("dashboard.pickup.status", { status: "pending" }),
       "Permintaan Baru",
       "phone-incoming",
       [],
@@ -23,7 +30,7 @@ const navigations = {
       "danger"
     ),
     addNav(
-      route("dashboard"),
+      route("dashboard.pickup.status", { status: "processing" }),
       "Sedang Diproses",
       "truck-delivery",
       [],
@@ -31,41 +38,45 @@ const navigations = {
       "primary"
     ),
     addNav(
-      route("dashboard"),
+      route("dashboard.pickup.status", { status: "completed" }),
       "Selesai",
       "checklist",
       [],
       count?.pickup?.completed,
       "success"
     ),
-    addNav(route("dashboard"), "Ditolak", "truck-off", [], count?.pickup?.rejected),
-    addNav(route("dashboard"), "Dibatalkan", "forbid-2", [], count?.pickup?.cancelled),
-  ],
-  master_data: [
-    addNav(route("dashboard"), "Data Admin", "user-shield", [
-      addSub(route("dashboard"), "List Admin"),
-      addSub(route("dashboard"), "Tambah Admin"),
-    ]),
-    addNav(route("dashboard"), "Data Operator", "user-square", [
-      addSub(route("dashboard"), "List Operator"),
-      addSub(route("dashboard"), "Tambah Operator"),
-    ]),
-    addNav(route("dashboard"), "Data Member", "users-group", [
-      addSub(route("dashboard"), "List Member"),
-      addSub(route("dashboard"), "Tambah Member"),
-    ]),
-    addNav(route("dashboard"), "Data Incentive", "gift", [
-      addSub(route("dashboard"), "List Incentive"),
-      addSub(route("dashboard"), "Tambah Incentive"),
-    ]),
+    addNav(
+      route("dashboard.pickup.status", { status: "rejected" }),
+      "Ditolak",
+      "truck-off",
+      [],
+      count?.pickup?.rejected
+    ),
+    addNav(
+      route("dashboard.pickup.status", { status: "cancelled" }),
+      "Dibatalkan",
+      "forbid-2",
+      [],
+      count?.pickup?.cancelled
+    ),
   ],
   laporan: [
-    addNav(route("dashboard"), "Laporan Penjemputan", "checkup-list"),
-    addNav(route("dashboard"), "Laporan Penukaran Point", "report-money"),
+    addNav(route("dashboard.report.pickup"), "Laporan Penjemputan", "checkup-list"),
+    addNav(
+      route("dashboard.report.point-reedemtion"),
+      "Laporan Penukaran Point",
+      "report-money"
+    ),
+  ],
+  master_data: [
+    addNav(route("dashboard.master-data.admin"), "Data Admin", "user-shield"),
+    addNav(route("dashboard.master-data.operator"), "Data Operator", "user-square"),
+    addNav(route("dashboard.master-data.member"), "Data Member", "users-group"),
+    addNav(route("dashboard.master-data.incentive"), "Data Incentive", "gift"),
   ],
   settings: [
-    addNav(route("dashboard"), "System", "settings"),
-    addNav(route("dashboard"), "Account", "user-cog"),
+    addNav(route("dashboard.settings.system"), "System", "settings"),
+    addNav(route("dashboard.settings.account"), "Account", "user-cog"),
   ],
 };
 </script>

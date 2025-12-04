@@ -2,5 +2,5 @@
 import PageTitle from "@components/PageTitle.vue";
 </script>
 <template>
-  <PageTitle title="Dashboard Admin" />
+  <PageTitle title="Penukaran Point" />
 </template>

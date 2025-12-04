@@ -50,6 +50,7 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             'dashboard' => 10,
+            'point_reedemtion' => 2,
             'pickup' => [
                 'pending' => 5,
                 'processing' => 3,

@@ -352,7 +352,8 @@ notifications.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => (
 })
 
 /**
-* @see routes/dashboard.php:8
+* @see \App\Http\Controllers\Dashboard\DashboardController::dashboard
+* @see app/Http/Controllers/Dashboard/DashboardController.php:10
 * @route '/dashboard'
 */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -366,7 +367,8 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see routes/dashboard.php:8
+* @see \App\Http\Controllers\Dashboard\DashboardController::dashboard
+* @see app/Http/Controllers/Dashboard/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -374,7 +376,8 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see routes/dashboard.php:8
+* @see \App\Http\Controllers\Dashboard\DashboardController::dashboard
+* @see app/Http/Controllers/Dashboard/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -383,7 +386,8 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 
 /**
-* @see routes/dashboard.php:8
+* @see \App\Http\Controllers\Dashboard\DashboardController::dashboard
+* @see app/Http/Controllers/Dashboard/DashboardController.php:10
 * @route '/dashboard'
 */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
