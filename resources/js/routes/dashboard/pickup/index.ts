@@ -45,7 +45,7 @@ location.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::list
-* @see app/Http/Controllers/Dashboard/PickupController.php:10
+* @see app/Http/Controllers/Dashboard/PickupController.php:12
 * @route '/dashboard/pickup/list'
 */
 export const list = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ list.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::list
-* @see app/Http/Controllers/Dashboard/PickupController.php:10
+* @see app/Http/Controllers/Dashboard/PickupController.php:12
 * @route '/dashboard/pickup/list'
 */
 list.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ list.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::list
-* @see app/Http/Controllers/Dashboard/PickupController.php:10
+* @see app/Http/Controllers/Dashboard/PickupController.php:12
 * @route '/dashboard/pickup/list'
 */
 list.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ list.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::list
-* @see app/Http/Controllers/Dashboard/PickupController.php:10
+* @see app/Http/Controllers/Dashboard/PickupController.php:12
 * @route '/dashboard/pickup/list'
 */
 list.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ list.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::status
-* @see app/Http/Controllers/Dashboard/PickupController.php:15
+* @see app/Http/Controllers/Dashboard/PickupController.php:42
 * @route '/dashboard/pickup/list/{status}'
 */
 export const status = (args: { status: string | number } | [status: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +104,7 @@ status.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::status
-* @see app/Http/Controllers/Dashboard/PickupController.php:15
+* @see app/Http/Controllers/Dashboard/PickupController.php:42
 * @route '/dashboard/pickup/list/{status}'
 */
 status.url = (args: { status: string | number } | [status: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -131,7 +131,7 @@ status.url = (args: { status: string | number } | [status: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::status
-* @see app/Http/Controllers/Dashboard/PickupController.php:15
+* @see app/Http/Controllers/Dashboard/PickupController.php:42
 * @route '/dashboard/pickup/list/{status}'
 */
 status.get = (args: { status: string | number } | [status: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -141,7 +141,7 @@ status.get = (args: { status: string | number } | [status: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\Dashboard\PickupController::status
-* @see app/Http/Controllers/Dashboard/PickupController.php:15
+* @see app/Http/Controllers/Dashboard/PickupController.php:42
 * @route '/dashboard/pickup/list/{status}'
 */
 status.head = (args: { status: string | number } | [status: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -149,10 +149,80 @@ status.head = (args: { status: string | number } | [status: string | number ] | 
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::getPickup
+* @see app/Http/Controllers/Dashboard/PickupController.php:17
+* @route '/dashboard/pickup/list'
+*/
+export const getPickup = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: getPickup.url(options),
+    method: 'post',
+})
+
+getPickup.definition = {
+    methods: ["post"],
+    url: '/dashboard/pickup/list',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::getPickup
+* @see app/Http/Controllers/Dashboard/PickupController.php:17
+* @route '/dashboard/pickup/list'
+*/
+getPickup.url = (options?: RouteQueryOptions) => {
+    return getPickup.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::getPickup
+* @see app/Http/Controllers/Dashboard/PickupController.php:17
+* @route '/dashboard/pickup/list'
+*/
+getPickup.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: getPickup.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::statusCount
+* @see app/Http/Controllers/Dashboard/PickupController.php:29
+* @route '/dashboard/pickup/status-count'
+*/
+export const statusCount = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: statusCount.url(options),
+    method: 'post',
+})
+
+statusCount.definition = {
+    methods: ["post"],
+    url: '/dashboard/pickup/status-count',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::statusCount
+* @see app/Http/Controllers/Dashboard/PickupController.php:29
+* @route '/dashboard/pickup/status-count'
+*/
+statusCount.url = (options?: RouteQueryOptions) => {
+    return statusCount.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\PickupController::statusCount
+* @see app/Http/Controllers/Dashboard/PickupController.php:29
+* @route '/dashboard/pickup/status-count'
+*/
+statusCount.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: statusCount.url(options),
+    method: 'post',
+})
+
 const pickup = {
     location: Object.assign(location, location),
     list: Object.assign(list, list),
     status: Object.assign(status, status),
+    getPickup: Object.assign(getPickup, getPickup),
+    statusCount: Object.assign(statusCount, statusCount),
 }
 
 export default pickup

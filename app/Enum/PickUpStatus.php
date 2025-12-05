@@ -35,4 +35,14 @@ enum PickUpStatus: string
             self::CANCELLED => 'ph ph-prohibit',
         };
     }
+    public function tableIcon()
+    {
+        return match ($this) {
+            self::PENDING => 'phone-incoming',
+            self::PROCESSING => 'truck-delivery',
+            self::COMPLETED => 'checklist',
+            self::REJECTED => 'truck-off',
+            self::CANCELLED => 'forbid-2',
+        };
+    }
 }

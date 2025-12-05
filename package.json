@@ -18,9 +18,10 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@bhplugin/vue3-datatable": "^2.0.2",
+        "@flasher/flasher": "file:vendor/php-flasher/flasher/Resources",
         "@inertiajs/vue3": "^2.2.19",
         "@vitejs/plugin-vue": "^6.0.2",
-        "ziggy-js": "^2.6.0",
-        "@flasher/flasher": "file:vendor/php-flasher/flasher/Resources"
+        "ziggy-js": "^2.6.0"
     }
 }

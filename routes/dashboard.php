@@ -5,7 +5,6 @@ use App\Http\Controllers\Dashboard\MasterDataController;
 use App\Http\Controllers\Dashboard\PickupController;
 use App\Http\Controllers\Dashboard\ReportController;
 use App\Http\Controllers\Dashboard\SettingController;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,6 +17,9 @@ Route::prefix('dashboard')->middleware(['dashboard'])->name('dashboard')->group(
     Route::prefix('pickup')->name('.pickup')->group(function () {
         Route::get('/list', [PickupController::class, 'pickupList'])->name('.list');
         Route::get('/list/{status}', [PickupController::class, 'status'])->name('.status');
+
+        Route::post('/list', [PickupController::class, 'getPickup'])->name('.get-pickup'); // dashboard.pickup.get-pickup
+        Route::post('/status-count', [PickupController::class, 'getPickupCount'])->name('.status-count'); // dashboard.pickup.status-count
     });
     Route::prefix('report')->name('.report')->group(function () {
         Route::get('/pickup', [ReportController::class, 'pickupReport'])->name('.pickup');
@@ -33,5 +35,8 @@ Route::prefix('dashboard')->middleware(['dashboard'])->name('dashboard')->group(
         Route::get('/system', [SettingController::class, 'system'])->name('.system');
         Route::get('/account', [SettingController::class, 'account'])->name('.account');
     });
+
+
+
 
 });
