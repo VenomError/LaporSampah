@@ -27,8 +27,8 @@ const rows = ref(null);
 const cols =
   ref([
     { field: "id", title: "ID", isUnique: true, type: "number" },
-    { field: "member", title: "Member", type: "string" },
-    { field: "operator", title: "Operator", type: "string" },
+    { field: "member_name", title: "Member", type: "string" },
+    { field: "operator_name", title: "Operator", type: "string" },
     { field: "weight", title: "Berat", type: "number" },
     { field: "status", title: "Status", type: "string" },
     { field: "created_at", title: "Tanggal Laporan", type: "string" },
@@ -45,7 +45,11 @@ const getPickups = async () => {
     loading.value = true;
 
     const res = await axios.post(route("dashboard.pickup.get-pickup"), toRaw(params));
-    rows.value = res.data.data;
+    rows.value = res.data.data.map((item) => ({
+      ...item,
+      member_name: item.member?.name ?? "-",
+      operator_name: item.operator?.name ?? "-",
+    }));
   } catch (err) {
   } finally {
     loading.value = false;
@@ -96,16 +100,16 @@ watch(
             <template #id="data">
               <strong>#{{ data.value.id }}</strong>
             </template>
-            <template #member="data">
+            <template #member_name="data">
               <Link class="text-dark fw-medium">
-                <span class="text-nowrap">{{ data.value.member?.name ?? "-" }}</span>
+                <span class="text-nowrap">{{ data.value.member_name ?? "-" }}</span>
               </Link>
             </template>
-            <template #operator="data">
+            <template #operator_name="data">
               <Link class="text-dark fw-medium">
                 <template v-if="data.value.operator?.name">
                   <span class="text-decoration-underline text-info">{{
-                    data.value.operator?.name
+                    data.value.operator_name
                   }}</span>
                 </template>
                 <template v-else>

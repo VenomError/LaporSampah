@@ -25,7 +25,7 @@ class Incentive extends Model
      *
      * @var array
      */
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'color'];
 
     /**
      * Scope a query to only include Active
@@ -40,11 +40,16 @@ class Incentive extends Model
 
     public function getImageUrlAttribute(): string
     {
-        if($this->image && Storage::disk('public')->exists($this->image)){
+        if ($this->image && Storage::disk('public')->exists($this->image)) {
             return Storage::url($this->image);
-        }else{
+        } else {
             return 'https://placehold.co/400.png?text=Not+Found';
         }
+    }
+
+    public function getColorAttribute()
+    {
+        return $this->is_active ? 'success' : 'danger';
     }
 
 }

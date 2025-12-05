@@ -40,7 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    protected $with = ['member','operator'];
+    protected $with = ['member', 'operator'];
 
     /**
      * Get the attributes that should be cast.
@@ -57,11 +57,36 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function member(){
-        return $this->hasOne(Member::class );
+    protected $appends = ['color', 'is_active'];
+
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
     }
-    public function operator(){
+    public function operator()
+    {
         return $this->hasOne(Operator::class);
     }
 
+    public function getColorAttribute()
+    {
+        return $this->status->color();
+    }
+
+    public function getIsActiveAttribute(): bool
+    {
+        return $this->status->isActive();
+    }
+
+    /**
+     * Scope a query to only include active
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', Status::ACTIVE);
+    }
 }

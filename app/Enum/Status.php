@@ -15,9 +15,9 @@ enum Status: string
     public function color()
     {
         return match ($this) {
-            self::ACTIVE => 'green',
-            self::NONACTIVE => 'red',
-            default => 'gray'
+            self::ACTIVE => 'success',
+            self::NONACTIVE => 'danger',
+            default => 'secondary'
         };
     }
     public function isActive(): bool

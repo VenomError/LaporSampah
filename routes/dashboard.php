@@ -30,6 +30,9 @@ Route::prefix('dashboard')->middleware(['dashboard'])->name('dashboard')->group(
         Route::get('/operator', [MasterDataController::class, 'operator'])->name('.operator');
         Route::get('/member', [MasterDataController::class, 'member'])->name('.member');
         Route::get('/incentive', [MasterDataController::class, 'incentive'])->name('.incentive');
+
+        Route::post('/list/{role?}', [MasterDataController::class, 'getListData'])->name('.get-list');  // dashboard.master-data.get-list
+        Route::post('/incentive/list', [MasterDataController::class, 'getListIncentive'])->name('.incentive.list');  // dashboard.master-data.incentive.list
     });
     Route::prefix('settings')->name('.settings')->group(function () {
         Route::get('/system', [SettingController::class, 'system'])->name('.system');
