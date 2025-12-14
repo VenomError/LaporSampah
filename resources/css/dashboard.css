@@ -1,7 +1,3 @@
-@import "../template/dashboard/css/vendor.min.css";
-@import "../template/dashboard/css/app.min.css";
-@import "../template/dashboard/css/icons.min.css";
-
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
