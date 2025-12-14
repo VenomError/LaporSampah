@@ -1,32 +1,58 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import { addNav, addSub } from "../../config/sidenav.js";
-import { usePage } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+import { addNav } from "../../config/sidenav.js";
 import { route } from "@route";
+import axios from "axios";
+import { ref, computed, onMounted } from "vue";
 
-const count = usePage().props.count;
+const emit = defineEmits(["register-refresh"]);
 
-const navigations = {
+const count = ref({
+  dashboard: 0,
+  point_reedemtion: 0,
+  pickup: {
+    pending: 0,
+    processing: 0,
+    completed: 0,
+    rejected: 0,
+    cancelled: 0,
+  },
+});
+
+const fetchCount = async () => {
+  const res = await axios.get(route("api.pickups.count"));
+  count.value = res.data;
+};
+
+onMounted(() => {
+  fetchCount();
+  emit("register-refresh", fetchCount); // 🔥 DAFTARKAN KE LAYOUT
+});
+/* =========================
+   NAVIGATION (COMPUTED)
+========================= */
+const navigations = computed(() => ({
   dashboard: [
-    addNav(route("dashboard"), "Dashboard", "dashboard", [], count?.dashboard),
+    addNav(route("dashboard"), "Dashboard", "dashboard", [], count.value.dashboard),
     addNav(
       route("dashboard.point.reedemtion"),
       "Penukaran Point",
       "transfer",
       [],
-      count?.point_reedemtion
+      count.value.point_reedemtion
     ),
-    addNav(route("dashboard.pickup.location"), "Lokasi Penjemputan", "map-pins", []),
-    addNav(route("dashboard.member.location"), "Lokasi Member", "user-pin", []),
+    addNav(route("dashboard.pickup.location"), "Lokasi Penjemputan", "map-pins"),
+    addNav(route("dashboard.member.location"), "Lokasi Member", "user-pin"),
   ],
+
   penjemputan: [
-    addNav(route("dashboard.pickup.list"), "Daftar Penjemputan", "list", []),
+    addNav(route("dashboard.pickup.list"), "Daftar Penjemputan", "list"),
     addNav(
       route("dashboard.pickup.status", { status: "pending" }),
       "Permintaan Baru",
       "phone-incoming",
       [],
-      count?.pickup?.pending,
+      count.value.pickup.pending,
       "danger"
     ),
     addNav(
@@ -34,7 +60,7 @@ const navigations = {
       "Sedang Diproses",
       "truck-delivery",
       [],
-      count?.pickup?.processing,
+      count.value.pickup.processing,
       "primary"
     ),
     addNav(
@@ -42,7 +68,7 @@ const navigations = {
       "Selesai",
       "checklist",
       [],
-      count?.pickup?.completed,
+      count.value.pickup.completed,
       "success"
     ),
     addNav(
@@ -50,16 +76,17 @@ const navigations = {
       "Ditolak",
       "truck-off",
       [],
-      count?.pickup?.rejected
+      count.value.pickup.rejected
     ),
     addNav(
       route("dashboard.pickup.status", { status: "cancelled" }),
       "Dibatalkan",
       "forbid-2",
       [],
-      count?.pickup?.cancelled
+      count.value.pickup.cancelled
     ),
   ],
+
   laporan: [
     addNav(route("dashboard.report.pickup"), "Laporan Penjemputan", "checkup-list"),
     addNav(
@@ -68,18 +95,21 @@ const navigations = {
       "report-money"
     ),
   ],
+
   master_data: [
     addNav(route("dashboard.master-data.admin"), "Data Admin", "user-shield"),
     addNav(route("dashboard.master-data.operator"), "Data Operator", "user-square"),
     addNav(route("dashboard.master-data.member"), "Data Member", "users-group"),
     addNav(route("dashboard.master-data.incentive"), "Data Incentive", "gift"),
   ],
+
   settings: [
     addNav(route("dashboard.settings.system"), "System", "settings"),
     addNav(route("dashboard.settings.account"), "Account", "user-cog"),
   ],
-};
+}));
 </script>
+
 <template>
   <div class="sidenav-menu">
     <!-- Brand Logo -->

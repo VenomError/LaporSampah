@@ -27,8 +27,8 @@ return Configuration::from([
 
     // Set global options for all notifications (optional)
     'options' => [
-        'timeout' =>1500, // Time in milliseconds before the notification disappears
-        'position' => 'top-center', // Where the notification appears on the screen
+        'timeout' => 1500, // Time in milliseconds before the notification disappears
+        'position' => 'bottom-right', // Where the notification appears on the screen
     ],
 
     // Automatically inject JavaScript and CSS assets into your HTML pages

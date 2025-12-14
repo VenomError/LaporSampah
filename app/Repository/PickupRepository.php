@@ -44,13 +44,30 @@ class PickupRepository
         $pickup->save();
 
         // Notify Operator
-        $operatorAccount = $operator->account;
-        $operatorAccount->notify(new PickupNotification($pickup, "anda ditugaskan menjemput sampah , alamat : {$pickup->location->address}", "Penjemputan Sampah"));
+        $operatorAccount = $operator?->account;
+        if ($operatorAccount) {
+            $operatorAccount->notify(new PickupNotification($pickup, "anda ditugaskan menjemput sampah , alamat : {$pickup->location->address}", "Penjemputan Sampah"));
+        }
 
         // Notify User
-        $user = $pickup->member->account;
-        $user->notify(new PickupNotification($pickup, "laporan sampah anda sedang dalam precess"));
+        $user = $pickup?->member?->account;
+        if ($user) {
+            $user->notify(new PickupNotification($pickup, "laporan sampah anda sedang dalam process"));
+        }
 
         return $pickup;
+    }
+
+    public function reject(Pickup $pickup)
+    {
+        $pickup->status = PickUpStatus::REJECTED;
+        $pickup->save();
+
+        $user = $pickup?->member?->account;
+        if ($user) {
+            $user->notify(new PickupNotification($pickup, "laporan sampah anda ditolak", "Laporan Ditolak"));
+        }
+        return $pickup;
+
     }
 }

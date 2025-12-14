@@ -1,11 +1,15 @@
 <script setup>
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import { Link } from "@inertiajs/vue3";
+import BtModal from "@components/BtModal.vue";
+import BtModalConfirm from "@components/BtModalConfirm.vue";
+
+import BtSelect from "@components/BtSelect.vue";
+import { Link, router, useForm } from "@inertiajs/vue3";
 import { route } from "@route";
 import axios from "axios";
 
-import { onMounted, reactive, ref, toDisplayString, toRaw, watch } from "vue";
+import { computed, onMounted, reactive, ref, toDisplayString, toRaw, watch } from "vue";
 const params = reactive({
   current_page: 1,
   pagesize: 10,
@@ -39,7 +43,9 @@ const getPickups = async () => {
   try {
     loading.value = true;
     const res = await axios.post(route("dashboard.pickup.get-pickup"), toRaw(params));
-    rows.value = res.data.data.map((item) => ({
+    console.log(res.data);
+
+    rows.value = res.data.map((item) => ({
       ...item,
       member_name: item.member?.name ?? "-",
       operator_name: item.operator?.name,
@@ -62,6 +68,58 @@ watch(
 defineExpose({
   reloadTable: () => getPickups(),
 });
+
+// Assign Operator
+const operators = ref([]);
+
+const fetchOperators = async () => {
+  try {
+    const res = await axios.get(route("api.operators"));
+    operators.value = res.data;
+  } catch (err) {}
+};
+
+const formAssign = useForm({
+  pickup_id: null,
+  operator_id: null,
+});
+const modalAssign = ref(null);
+const showModalAssign = (pickup_id) => {
+  fetchOperators();
+  formAssign.pickup_id = pickup_id;
+  modalAssign.value.open();
+};
+function submitOperator() {
+  formAssign.post(route("api.pickups.assign-operator"), {
+    onSuccess: () => {
+      formAssign.reset();
+      modalAssign.value.close();
+      getPickups();
+      window.dispatchEvent(new Event("sidebar-refresh"));
+    },
+  });
+}
+
+// Rejected
+const modalConfirm = ref(null);
+const selectedId = ref(null);
+function showConfirmModal(pickup_id) {
+  selectedId.value = pickup_id;
+  modalConfirm.value.open();
+}
+function pickupReject() {
+  const url = route("api.pickups.reject", { pickup: selectedId.value });
+  router.post(
+    url,
+    {},
+    {
+      onSuccess: () => {
+        getPickups();
+        window.dispatchEvent(new Event("sidebar-refresh"));
+      },
+    }
+  );
+}
 </script>
 <template>
   <div class="row">
@@ -103,26 +161,38 @@ defineExpose({
               <strong>#{{ data.value.id }}</strong>
             </template>
             <template #member_name="data">
-              <Link class="text-dark fw-medium">
-                <span class="text-nowrap text-decoration-underline text-primary">{{
-                  data.value.member_name ?? "-"
-                }}</span>
-              </Link>
+              <template v-if="data.value.member">
+                <Link class="text-dark fw-medium">
+                  <span class="text-nowrap text-decoration-underline text-primary">{{
+                    data.value.member_name
+                  }}</span>
+                </Link>
+              </template>
+              <template v-else> - </template>
             </template>
             <template #operator_name="data">
-              <Link class="text-dark fw-medium text-nowrap">
-                <template v-if="data.value.operator_name">
+              <template v-if="data.value.operator_name">
+                <Link class="text-dark fw-medium text-nowrap">
                   <span class="text-decoration-underline text-primary">{{
                     data.value.operator_name
                   }}</span>
-                </template>
-                <template v-else>
-                  <button type="button" class="btn btn-sm btn-danger text-nowrap">
-                    <i class="ti ti-truck me-2"></i>
-                    Assign Operator
-                  </button>
-                </template>
-              </Link>
+                </Link>
+              </template>
+              <template
+                v-else-if="
+                  data.value.status != 'rejected' && data.value.status != 'cancelled'
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger text-nowrap"
+                  @click="showModalAssign(data.value.id)"
+                >
+                  <i class="ti ti-truck me-2"></i>
+                  Assign Operator
+                </button>
+              </template>
+              <template v-else> - </template>
             </template>
             <template #weight="data">
               <span class="text-nowrap">{{ data.value.weight }} KG</span>
@@ -153,7 +223,16 @@ defineExpose({
                 <button class="btn btn-primary btn-sm" type="button">
                   <i class="ti ti-eye fs-20 me-2"></i> Detail
                 </button>
-                <button class="btn btn-danger btn-sm" type="button">
+                <button
+                  class="btn btn-danger btn-sm"
+                  type="button"
+                  @click="showConfirmModal(data.value.id)"
+                  v-show="
+                    !data.value.operator_name &&
+                    data.value.status != 'rejected' &&
+                    data.value.status != 'cancelled'
+                  "
+                >
                   <i class="ti ti-forbid-2 fs-20 me-2"></i> Reject
                 </button>
               </div>
@@ -163,4 +242,34 @@ defineExpose({
       </div>
     </div>
   </div>
+
+  <BtModal
+    id="modal-edit-admin"
+    title="Assign Operator"
+    ref="modalAssign"
+    @close="formAssign.reset()"
+  >
+    <form @submit.prevent="submitOperator">
+      <BtSelect
+        label="Pilih Operator"
+        v-model="formAssign.operator_id"
+        :error="formAssign.errors.operator_id"
+      >
+        <template v-for="operator in operators" :key="operator.id">
+          <option :value="operator.id">{{ operator.name }}</option>
+        </template>
+      </BtSelect>
+      <button class="btn btn-success float-end mt-3" type="submit">Simpan</button>
+    </form>
+  </BtModal>
+  <BtModalConfirm
+    ref="modalConfirm"
+    title="Tolak Laporan"
+    message="Laporan ini Akan di Tolak"
+    icon="forbid-2"
+    icon-color="danger"
+    confirm-text="Tolak"
+    confirm-class="btn-danger"
+    @confirm="pickupReject()"
+  />
 </template>

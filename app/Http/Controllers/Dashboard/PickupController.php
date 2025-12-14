@@ -22,7 +22,7 @@ class PickupController extends Controller
         $query->when($request->created_at, fn($q) => $q->whereDate('created_at', $request->created_at));
         $query->with(['operator', 'member']);
         $query->latest();
-        $pickups = $query->paginate();
+        $pickups = $query->get();
         return response()->json($pickups);
     }
 
@@ -44,7 +44,7 @@ class PickupController extends Controller
         $status = PickUpStatus::tryFrom($status);
         $color = $status->color();
         $icon = $status->tableIcon();
-        $today = PickUp::whereStatus($status)->whereToday('created_at')->count();
+        $today = PickUp::whereStatus($status)->whereToday('updated_at')->count();
         $total = PickUp::whereStatus($status)->count();
         return inertia('Dashboard/Pickup/PickupStatus', compact(
             'status',

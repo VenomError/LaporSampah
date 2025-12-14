@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\AuthController::process
-* @see app/Http/Controllers/AuthController.php:17
+* @see app/Http/Controllers/AuthController.php:18
 * @route '/login'
 */
 export const process = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ process.definition = {
 
 /**
 * @see \App\Http\Controllers\AuthController::process
-* @see app/Http/Controllers/AuthController.php:17
+* @see app/Http/Controllers/AuthController.php:18
 * @route '/login'
 */
 process.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ process.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AuthController::process
-* @see app/Http/Controllers/AuthController.php:17
+* @see app/Http/Controllers/AuthController.php:18
 * @route '/login'
 */
 process.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

@@ -121,7 +121,7 @@ defineExpose({
       <select class="form-select" v-model="params.status">
         <option value="">All</option>
         <option value="active">active</option>
-        <option value="inactive">inactive</option>
+        <option value="non_active">inactive</option>
       </select>
       <input type="date" class="form-control" v-model="params.created_at" />
       <button class="btn btn-danger" @click="reset">Reset</button>

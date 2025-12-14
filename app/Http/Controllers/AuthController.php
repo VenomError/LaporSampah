@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Repository\UserRepository;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,9 @@ class AuthController extends Controller
         }
 
         $role = Auth::user()->role;
-        return $role->redirect();
+        return Inertia::location(
+            $role->redirect()
+        );
     }
     public function register()
     {

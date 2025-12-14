@@ -16,9 +16,9 @@ enum UserRole: string
     public function redirect()
     {
         return match ($this) {
-            self::MEMBER => redirect('/'),
-            self::OPERATOR => redirect('/operator'),
-            self::ADMIN => redirect('/dashboard'),
+            self::MEMBER => '/',
+            self::OPERATOR => '/operator',
+            self::ADMIN => '/dashboard',
         };
     }
 }
