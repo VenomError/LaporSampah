@@ -86,16 +86,6 @@ const navigations = computed(() => ({
       count.value.pickup.cancelled
     ),
   ],
-
-  laporan: [
-    addNav(route("dashboard.report.pickup"), "Laporan Penjemputan", "checkup-list"),
-    addNav(
-      route("dashboard.report.point-reedemtion"),
-      "Laporan Penukaran Point",
-      "report-money"
-    ),
-  ],
-
   master_data: [
     addNav(route("dashboard.master-data.admin"), "Data Admin", "user-shield"),
     addNav(route("dashboard.master-data.operator"), "Data Operator", "user-square"),

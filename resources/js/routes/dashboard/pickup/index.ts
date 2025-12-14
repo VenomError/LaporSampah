@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::location
-* @see app/Http/Controllers/Dashboard/DashboardController.php:19
+* @see app/Http/Controllers/Dashboard/DashboardController.php:23
 * @route '/dashboard/pickup-location'
 */
 export const location = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ location.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::location
-* @see app/Http/Controllers/Dashboard/DashboardController.php:19
+* @see app/Http/Controllers/Dashboard/DashboardController.php:23
 * @route '/dashboard/pickup-location'
 */
 location.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ location.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::location
-* @see app/Http/Controllers/Dashboard/DashboardController.php:19
+* @see app/Http/Controllers/Dashboard/DashboardController.php:23
 * @route '/dashboard/pickup-location'
 */
 location.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ location.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::location
-* @see app/Http/Controllers/Dashboard/DashboardController.php:19
+* @see app/Http/Controllers/Dashboard/DashboardController.php:23
 * @route '/dashboard/pickup-location'
 */
 location.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

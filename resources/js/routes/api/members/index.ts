@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\MemberController::store
-* @see app/Http/Controllers/Api/MemberController.php:25
+* @see app/Http/Controllers/Api/MemberController.php:26
 * @route '/api/members'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::store
-* @see app/Http/Controllers/Api/MemberController.php:25
+* @see app/Http/Controllers/Api/MemberController.php:26
 * @route '/api/members'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::store
-* @see app/Http/Controllers/Api/MemberController.php:25
+* @see app/Http/Controllers/Api/MemberController.php:26
 * @route '/api/members'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::destroy
-* @see app/Http/Controllers/Api/MemberController.php:63
+* @see app/Http/Controllers/Api/MemberController.php:64
 * @route '/api/members/{member}'
 */
 export const destroy = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -50,7 +50,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::destroy
-* @see app/Http/Controllers/Api/MemberController.php:63
+* @see app/Http/Controllers/Api/MemberController.php:64
 * @route '/api/members/{member}'
 */
 destroy.url = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -83,7 +83,7 @@ destroy.url = (args: { member: number | { id: number } } | [member: number | { i
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::destroy
-* @see app/Http/Controllers/Api/MemberController.php:63
+* @see app/Http/Controllers/Api/MemberController.php:64
 * @route '/api/members/{member}'
 */
 destroy.delete = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -93,7 +93,7 @@ destroy.delete = (args: { member: number | { id: number } } | [member: number | 
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::toggleStatus
-* @see app/Http/Controllers/Api/MemberController.php:73
+* @see app/Http/Controllers/Api/MemberController.php:74
 * @route '/api/members/{member}/toggle-status'
 */
 export const toggleStatus = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -108,7 +108,7 @@ toggleStatus.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::toggleStatus
-* @see app/Http/Controllers/Api/MemberController.php:73
+* @see app/Http/Controllers/Api/MemberController.php:74
 * @route '/api/members/{member}/toggle-status'
 */
 toggleStatus.url = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -141,7 +141,7 @@ toggleStatus.url = (args: { member: number | { id: number } } | [member: number 
 
 /**
 * @see \App\Http\Controllers\Api\MemberController::toggleStatus
-* @see app/Http/Controllers/Api/MemberController.php:73
+* @see app/Http/Controllers/Api/MemberController.php:74
 * @route '/api/members/{member}/toggle-status'
 */
 toggleStatus.post = (args: { member: number | { id: number } } | [member: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({

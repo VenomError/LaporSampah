@@ -21,10 +21,6 @@ Route::prefix('dashboard')->middleware(['dashboard', 'auth'])->name('dashboard')
         Route::post('/list', [PickupController::class, 'getPickup'])->name('.get-pickup'); // dashboard.pickup.get-pickup
         Route::post('/status-count', [PickupController::class, 'getPickupCount'])->name('.status-count'); // dashboard.pickup.status-count
     });
-    Route::prefix('report')->name('.report')->group(function () {
-        Route::get('/pickup', [ReportController::class, 'pickupReport'])->name('.pickup');
-        Route::get('/point-reedemtion', [ReportController::class, 'pointReedemtionReport'])->name('.point-reedemtion');
-    });
     Route::prefix('master-data')->name('.master-data')->group(function () {
         Route::get('/admin', [MasterDataController::class, 'admin'])->name('.admin');
         Route::post('/admin', [MasterDataController::class, 'adminAdd'])->name('.admin-add'); // dashboard.master-data.admin-add

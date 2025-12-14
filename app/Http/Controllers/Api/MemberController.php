@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Enum\Status;
+use App\Models\Location;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Repository\UserRepository;
@@ -79,4 +80,6 @@ class MemberController extends Controller
             flash("Account Inactivated");
         }
     }
+
+
 }
