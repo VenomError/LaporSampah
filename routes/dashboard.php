@@ -27,6 +27,9 @@ Route::prefix('dashboard')->middleware(['dashboard'])->name('dashboard')->group(
     });
     Route::prefix('master-data')->name('.master-data')->group(function () {
         Route::get('/admin', [MasterDataController::class, 'admin'])->name('.admin');
+        Route::post('/admin', [MasterDataController::class, 'adminAdd'])->name('.admin-add'); // dashboard.master-data.admin-add
+        Route::post('/admin/{user}', [MasterDataController::class, 'adminEdit'])->name('.admin-update'); // dashboard.master-data.admin-remove
+        Route::delete('/admin/{user}', [MasterDataController::class, 'adminRemove'])->name('.admin-remove'); // dashboard.master-data.admin-remove
         Route::get('/operator', [MasterDataController::class, 'operator'])->name('.operator');
         Route::get('/member', [MasterDataController::class, 'member'])->name('.member');
         Route::get('/incentive', [MasterDataController::class, 'incentive'])->name('.incentive');

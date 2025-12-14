@@ -12,6 +12,8 @@ defineProps({
       <h4 class="fs-18 fw-semibold mb-0 text-capitalize">{{ title }}</h4>
     </div>
 
-    <div class="text-end"></div>
+    <div class="gap-2 d-flex justify-content-end align-items-center">
+      <slot />
+    </div>
   </div>
 </template>

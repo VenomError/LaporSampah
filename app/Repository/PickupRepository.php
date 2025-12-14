@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Enum\PickUpStatus;
 use App\Models\Location;
 use App\Models\Member;
+use App\Models\Operator;
 use App\Models\PickUp;
 use App\Models\PointHistory;
 use App\Notifications\PickupNotification;
@@ -31,8 +32,25 @@ class PickupRepository
         $pickup->location()->save($location);
 
         // Notification
-        $user = Auth::user();
+        $user = $member->account;
         $user->notify(new PickupNotification($pickup, "Laporan Sampah anda Berhasil di Kirim"));
+        return $pickup;
+    }
+
+    public function assignOperator(PickUp $pickup, Operator $operator)
+    {
+        $pickup->operator()->associate($operator);
+        $pickup->status = PickUpStatus::PROCESSING;
+        $pickup->save();
+
+        // Notify Operator
+        $operatorAccount = $operator->account;
+        $operatorAccount->notify(new PickupNotification($pickup, "anda ditugaskan menjemput sampah , alamat : {$pickup->location->address}", "Penjemputan Sampah"));
+
+        // Notify User
+        $user = $pickup->member->account;
+        $user->notify(new PickupNotification($pickup, "laporan sampah anda sedang dalam precess"));
+
         return $pickup;
     }
 }

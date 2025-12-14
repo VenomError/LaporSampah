@@ -19,7 +19,7 @@ const loading = ref(false);
 const params = reactive({
   search: "",
   created_at: null,
-  is_active: false,
+  is_active: "",
 });
 
 const getIncentives = async () => {
@@ -30,6 +30,7 @@ const getIncentives = async () => {
       toRaw(params)
     );
     rows.value = res.data;
+    console.log(toRaw(params));
   } catch (error) {
   } finally {
     loading.value = false;
@@ -51,16 +52,27 @@ watch(
     getIncentives();
   }
 );
+defineExpose({
+  reloadTable: () => getIncentives(),
+});
 </script>
 
 <template>
-  <BaseTable :cols="cols" :rows="rows" :loading="loading">
+  <BaseTable
+    :cols="cols"
+    :rows="rows"
+    :loading="loading"
+    v-model:search="params.search"
+    :sortable="true"
+    sortColumn="created_at"
+    sortDirection="desc"
+  >
     <!-- header -->
     <template #header>
       <select class="form-select" v-model="params.is_active">
         <option value="">All</option>
-        <option :value="true">active</option>
-        <option :value="false">inactive</option>
+        <option value="1">Active</option>
+        <option value="0">Inactive</option>
       </select>
       <input type="date" class="form-control" v-model="params.created_at" />
       <button class="btn btn-danger" @click="reset">Reset</button>

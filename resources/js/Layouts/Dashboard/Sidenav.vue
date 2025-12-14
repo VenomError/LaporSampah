@@ -83,7 +83,7 @@ const navigations = {
 <template>
   <div class="sidenav-menu">
     <!-- Brand Logo -->
-    <Link href="/dashboard" class="logo mt-3 mb-2">
+    <Link href="/dashboard" class="logo mt-3 mb-2" view-transition>
       <span class="logo-light">
         <span class="logo-lg"
           ><img src="@template/dashboard/images/logo.png" alt="logo"
@@ -122,7 +122,7 @@ const navigations = {
         <template v-for="(item, index) in items" :key="index">
           <template v-if="item.sub.length == 0">
             <li class="side-nav-item">
-              <Link :href="item.route" class="side-nav-link">
+              <Link :href="item.route" class="side-nav-link" view-transition>
                 <span class="menu-icon"><i :class="`ti ti-` + item.icon"></i></span>
                 <span class="menu-text">
                   {{ item.title }}

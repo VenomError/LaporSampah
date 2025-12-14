@@ -10,6 +10,7 @@ class Operator extends Model
     protected $fillable = [
         'user_id',
         'status',
+        'name',
     ];
     protected $casts = [
         'status' => Status::class,
@@ -19,7 +20,7 @@ class Operator extends Model
 
     public function account()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function pickups()
@@ -31,6 +32,7 @@ class Operator extends Model
     {
         return $this->status->color();
     }
+
 
     public function getIsActiveAttribute(): bool
     {

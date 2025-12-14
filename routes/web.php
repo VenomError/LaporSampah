@@ -9,4 +9,9 @@ Route::post('/location', [LocationController::class, 'getAddress'])->name('locat
 
 include base_path('/routes/member.php');
 include base_path('/routes/dashboard.php');
-
+Route::prefix('api')
+    ->name('api.')
+    // ->middleware('auth')
+    ->group(function () {
+        include base_path('/routes/api.php');
+    });

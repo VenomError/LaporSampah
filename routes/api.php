@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// users
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');

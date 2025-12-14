@@ -42,7 +42,7 @@ const getPickups = async () => {
     rows.value = res.data.data.map((item) => ({
       ...item,
       member_name: item.member?.name ?? "-",
-      operator_name: item.operator?.name ?? "-",
+      operator_name: item.operator?.name,
     }));
   } catch (err) {
   } finally {
@@ -59,6 +59,9 @@ watch(
     getPickups();
   }
 );
+defineExpose({
+  reloadTable: () => getPickups(),
+});
 </script>
 <template>
   <div class="row">
@@ -101,13 +104,15 @@ watch(
             </template>
             <template #member_name="data">
               <Link class="text-dark fw-medium">
-                <span class="text-nowrap">{{ data.value.member_name ?? "-" }}</span>
+                <span class="text-nowrap text-decoration-underline text-primary">{{
+                  data.value.member_name ?? "-"
+                }}</span>
               </Link>
             </template>
-            <template #operator="data">
-              <Link class="text-dark fw-medium">
-                <template v-if="data.value.operator?.name">
-                  <span class="text-decoration-underline text-info">{{
+            <template #operator_name="data">
+              <Link class="text-dark fw-medium text-nowrap">
+                <template v-if="data.value.operator_name">
+                  <span class="text-decoration-underline text-primary">{{
                     data.value.operator_name
                   }}</span>
                 </template>

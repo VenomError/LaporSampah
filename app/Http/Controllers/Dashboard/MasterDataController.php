@@ -6,6 +6,7 @@ use App\Enum\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\Incentive;
 use App\Models\User;
+use App\Repository\UserRepository;
 use Illuminate\Http\Request;
 
 class MasterDataController extends Controller
@@ -13,6 +14,58 @@ class MasterDataController extends Controller
     public function admin()
     {
         return inertia('Dashboard/MasterData/Admin');
+    }
+
+    public function adminAdd(Request $request, UserRepository $userRepo)
+    {
+        $userData = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required'
+        ]);
+        try {
+            $userRepo->addAdmin($userData);
+            flash()
+                ->option('position', 'bottom-right')
+                ->success('Berhasil Menambahkan Admin');
+
+            return back();
+        } catch (\Throwable $th) {
+            flash()
+                ->option('position', 'bottom-right')
+                ->error('Gagal Menambahkan Admin');
+            return back();
+        }
+    }
+
+    public function adminEdit(Request $request, User $user, UserRepository $userRepo)
+    {
+        $data = $request->validate([
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable',
+        ]);
+        try {
+            $userRepo->update($user, $data);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+    }
+
+    public function adminRemove(User $user, UserRepository $userRepo)
+    {
+        try {
+            $userRepo->remove($user);
+            flash()
+                ->option('position', 'bottom-right')
+                ->success('Berhasil Menghapus Admin');
+            return back();
+        } catch (\Throwable $th) {
+            flash()
+                ->option('position', 'bottom-right')
+                ->error('Gagal Menghapus Admin');
+            return back();
+        }
     }
 
     public function operator()
@@ -59,7 +112,9 @@ class MasterDataController extends Controller
         // filter date
         $query->when($request->created_at, fn($q) => $q->whereDate('created_at', $request->created_at));
         // filter status
-        $query->when($request->is_active, fn($q) => $q->where('is_active', $request->is_active));
+        if ($request->filled('is_active')) {
+            $query->where('is_active', $request->is_active);
+        }
         $query->orderBy('is_active', 'desc');
         $incentives = $query->get();
 

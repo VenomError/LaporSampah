@@ -51,10 +51,21 @@ watch(
     getUsers();
   }
 );
+defineExpose({
+  reloadTable: () => getUsers(),
+});
 </script>
 
 <template>
-  <BaseTable :cols="cols" :rows="rows" :loading="loading">
+  <BaseTable
+    :cols="cols"
+    :rows="rows"
+    :loading="loading"
+    v-model:search="params.search"
+    :sortable="true"
+    sortColumn="created_at"
+    sortDirection="desc"
+  >
     <!-- header -->
     <template #header>
       <select class="form-select" v-model="params.status">
@@ -73,7 +84,7 @@ watch(
       <div class="d-flex gap-2 flex-row">
         <h5 class="fs-14 text-nowrap text-capitalize mt-1 fw-normal">
           <i class="ti ti-circle-filled fs-12" :class="'text-' + data.value.color"></i>
-          {{ data.value.status }}
+          {{ String(data.value.status).replace("_", " ") }}
         </h5>
         <h5 class="fs-14 text-nowrap text-capitalize mt-1 fw-normal">
           <i

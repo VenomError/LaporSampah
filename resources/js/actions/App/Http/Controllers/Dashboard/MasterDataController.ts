@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::admin
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:13
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:14
 * @route '/dashboard/master-data/admin'
 */
 export const admin = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ admin.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::admin
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:13
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:14
 * @route '/dashboard/master-data/admin'
 */
 admin.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ admin.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::admin
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:13
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:14
 * @route '/dashboard/master-data/admin'
 */
 admin.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ admin.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::admin
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:13
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:14
 * @route '/dashboard/master-data/admin'
 */
 admin.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +44,158 @@ admin.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminAdd
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:19
+* @route '/dashboard/master-data/admin'
+*/
+export const adminAdd = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: adminAdd.url(options),
+    method: 'post',
+})
+
+adminAdd.definition = {
+    methods: ["post"],
+    url: '/dashboard/master-data/admin',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminAdd
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:19
+* @route '/dashboard/master-data/admin'
+*/
+adminAdd.url = (options?: RouteQueryOptions) => {
+    return adminAdd.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminAdd
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:19
+* @route '/dashboard/master-data/admin'
+*/
+adminAdd.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: adminAdd.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminEdit
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:40
+* @route '/dashboard/master-data/admin/{user}'
+*/
+export const adminEdit = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: adminEdit.url(args, options),
+    method: 'post',
+})
+
+adminEdit.definition = {
+    methods: ["post"],
+    url: '/dashboard/master-data/admin/{user}',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminEdit
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:40
+* @route '/dashboard/master-data/admin/{user}'
+*/
+adminEdit.url = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { user: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { user: args.id }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            user: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        user: typeof args.user === 'object'
+        ? args.user.id
+        : args.user,
+    }
+
+    return adminEdit.definition.url
+            .replace('{user}', parsedArgs.user.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminEdit
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:40
+* @route '/dashboard/master-data/admin/{user}'
+*/
+adminEdit.post = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: adminEdit.url(args, options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminRemove
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:55
+* @route '/dashboard/master-data/admin/{user}'
+*/
+export const adminRemove = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: adminRemove.url(args, options),
+    method: 'delete',
+})
+
+adminRemove.definition = {
+    methods: ["delete"],
+    url: '/dashboard/master-data/admin/{user}',
+} satisfies RouteDefinition<["delete"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminRemove
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:55
+* @route '/dashboard/master-data/admin/{user}'
+*/
+adminRemove.url = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { user: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { user: args.id }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            user: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        user: typeof args.user === 'object'
+        ? args.user.id
+        : args.user,
+    }
+
+    return adminRemove.definition.url
+            .replace('{user}', parsedArgs.user.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\MasterDataController::adminRemove
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:55
+* @route '/dashboard/master-data/admin/{user}'
+*/
+adminRemove.delete = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: adminRemove.url(args, options),
+    method: 'delete',
+})
+
+/**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::operator
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:18
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:71
 * @route '/dashboard/master-data/operator'
 */
 export const operator = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +210,7 @@ operator.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::operator
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:18
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:71
 * @route '/dashboard/master-data/operator'
 */
 operator.url = (options?: RouteQueryOptions) => {
@@ -69,7 +219,7 @@ operator.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::operator
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:18
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:71
 * @route '/dashboard/master-data/operator'
 */
 operator.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +229,7 @@ operator.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::operator
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:18
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:71
 * @route '/dashboard/master-data/operator'
 */
 operator.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +239,7 @@ operator.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::member
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:23
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:76
 * @route '/dashboard/master-data/member'
 */
 export const member = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -104,7 +254,7 @@ member.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::member
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:23
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:76
 * @route '/dashboard/master-data/member'
 */
 member.url = (options?: RouteQueryOptions) => {
@@ -113,7 +263,7 @@ member.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::member
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:23
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:76
 * @route '/dashboard/master-data/member'
 */
 member.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -123,7 +273,7 @@ member.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::member
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:23
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:76
 * @route '/dashboard/master-data/member'
 */
 member.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -133,7 +283,7 @@ member.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::incentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:28
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:81
 * @route '/dashboard/master-data/incentive'
 */
 export const incentive = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -148,7 +298,7 @@ incentive.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::incentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:28
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:81
 * @route '/dashboard/master-data/incentive'
 */
 incentive.url = (options?: RouteQueryOptions) => {
@@ -157,7 +307,7 @@ incentive.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::incentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:28
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:81
 * @route '/dashboard/master-data/incentive'
 */
 incentive.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -167,7 +317,7 @@ incentive.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::incentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:28
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:81
 * @route '/dashboard/master-data/incentive'
 */
 incentive.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -177,7 +327,7 @@ incentive.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListData
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:33
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:86
 * @route '/dashboard/master-data/list/{role?}'
 */
 export const getListData = (args?: { role?: string | number } | [role: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -192,7 +342,7 @@ getListData.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListData
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:33
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:86
 * @route '/dashboard/master-data/list/{role?}'
 */
 getListData.url = (args?: { role?: string | number } | [role: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -223,7 +373,7 @@ getListData.url = (args?: { role?: string | number } | [role: string | number ] 
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListData
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:33
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:86
 * @route '/dashboard/master-data/list/{role?}'
 */
 getListData.post = (args?: { role?: string | number } | [role: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -233,7 +383,7 @@ getListData.post = (args?: { role?: string | number } | [role: string | number ]
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListIncentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:54
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
 * @route '/dashboard/master-data/incentive/list'
 */
 export const getListIncentive = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -248,7 +398,7 @@ getListIncentive.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListIncentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:54
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
 * @route '/dashboard/master-data/incentive/list'
 */
 getListIncentive.url = (options?: RouteQueryOptions) => {
@@ -257,7 +407,7 @@ getListIncentive.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::getListIncentive
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:54
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
 * @route '/dashboard/master-data/incentive/list'
 */
 getListIncentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -265,6 +415,6 @@ getListIncentive.post = (options?: RouteQueryOptions): RouteDefinition<'post'> =
     method: 'post',
 })
 
-const MasterDataController = { admin, operator, member, incentive, getListData, getListIncentive }
+const MasterDataController = { admin, adminAdd, adminEdit, adminRemove, operator, member, incentive, getListData, getListIncentive }
 
 export default MasterDataController

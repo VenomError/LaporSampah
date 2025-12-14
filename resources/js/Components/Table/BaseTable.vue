@@ -1,6 +1,9 @@
 <script setup>
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+
+const emit = defineEmits(["update:search"]);
+
 const props = defineProps({
   rows: { type: Array, default: [], required: true },
   cols: { type: Array, default: [], required: true },
@@ -18,7 +21,13 @@ const props = defineProps({
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Search..." />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+                :value="search"
+                @input="emit('update:search', $event.target.value)"
+              />
             </div>
             <div class="mb-3 d-flex gap-2 align-items-center">
               <slot name="header" />
