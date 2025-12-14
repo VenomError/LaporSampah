@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\IncentiveController;
 use App\Http\Controllers\Api\MemberController;
 use App\Http\Controllers\Api\OperatorController;
 use App\Http\Controllers\Api\PickupController;
@@ -25,3 +26,8 @@ Route::post('/operators/{operator}/toggle-status', [OperatorController::class, '
 Route::post('/members', [MemberController::class, 'store'])->name('members.store');
 Route::delete('/members/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 Route::post('/members/{member}/toggle-status', [MemberController::class, 'toggleStatus'])->name('members.toggle-status');
+
+// Incentive
+Route::post('/incentive', [IncentiveController::class, 'store'])->name('incentive.store');
+Route::delete('/incentive/{incentive}', [IncentiveController::class, 'destroy'])->name('incentive.destroy');
+Route::post('/incentive/{incentive}/toggle-status', [IncentiveController::class, 'toggleStatus'])->name('incentive.toggle-status');

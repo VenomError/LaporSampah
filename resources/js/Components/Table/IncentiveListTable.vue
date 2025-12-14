@@ -1,8 +1,10 @@
 <script setup>
 import { computed, onMounted, reactive, ref, toRaw, watch } from "vue";
 import BaseTable from "@components/Table/BaseTable.vue";
+import BtModalConfirm from "@components/BtModalConfirm.vue";
 import axios from "axios";
 import { route } from "@route";
+import { router } from "@inertiajs/vue3";
 
 const cols =
   ref([
@@ -30,7 +32,6 @@ const getIncentives = async () => {
       toRaw(params)
     );
     rows.value = res.data;
-    console.log(toRaw(params));
   } catch (error) {
   } finally {
     loading.value = false;
@@ -55,6 +56,42 @@ watch(
 defineExpose({
   reloadTable: () => getIncentives(),
 });
+
+// toggle status
+const toggling = ref(new Set());
+function toggleStatus(id) {
+  if (toggling.value.has(id)) return;
+
+  toggling.value.add(id);
+  router.post(
+    route("api.incentive.toggle-status", { incentive: id }),
+    {},
+    {
+      onFinish: () => {
+        toggling.value.delete(id);
+      },
+      onSuccess: () => {
+        getIncentives();
+      },
+    }
+  );
+}
+
+// Removing
+const selectedId = ref(null);
+const modalConfirm = ref(null);
+const showConfirmModal = (id) => {
+  selectedId.value = id;
+  modalConfirm.value.open();
+};
+const remove = () => {
+  const url = route("api.incentive.destroy", { incentive: selectedId.value });
+  router.delete(url, {
+    onSuccess: () => {
+      getIncentives();
+    },
+  });
+};
 </script>
 
 <template>
@@ -71,8 +108,8 @@ defineExpose({
     <template #header>
       <select class="form-select" v-model="params.is_active">
         <option value="">All</option>
-        <option value="1">Active</option>
-        <option value="0">Inactive</option>
+        <option :value="true">Active</option>
+        <option :value="false">Inactive</option>
       </select>
       <input type="date" class="form-control" v-model="params.created_at" />
       <button class="btn btn-danger" @click="reset">Reset</button>
@@ -117,7 +154,60 @@ defineExpose({
         <button class="btn btn-primary btn-sm" type="button">
           <i class="ti ti-eye fs-20 me-2"></i> Detail
         </button>
+        <button
+          class="btn btn-danger btn-sm"
+          @click="showConfirmModal(data.value.id)"
+          type="button"
+        >
+          <i class="ti ti-trash fs-20 me-2"></i> Hapus
+        </button>
+        <template v-if="data.value.is_active">
+          <button
+            class="btn btn-danger btn-sm"
+            type="button"
+            :disabled="toggling.has(data.value.id)"
+            @click="toggleStatus(data.value.id)"
+          >
+            <template v-if="toggling.has(data.value.id)">
+              <i class="ti ti-loader-2 ti-spin fs-20 me-2"></i>
+              Processing...
+            </template>
+            <template v-else>
+              <i class="ti ti-forbid-2 fs-20 me-2"></i>
+              Inactivate
+            </template>
+          </button>
+        </template>
+
+        <template v-else>
+          <button
+            class="btn btn-success btn-sm"
+            type="button"
+            :disabled="toggling.has(data.value.id)"
+            @click="toggleStatus(data.value.id)"
+          >
+            <template v-if="toggling.has(data.value.id)">
+              <i class="ti ti-loader-2 ti-spin fs-20 me-2"></i>
+              Processing...
+            </template>
+            <template v-else>
+              <i class="ti ti-check fs-20 me-2"></i>
+              Activate
+            </template>
+          </button>
+        </template>
       </div>
     </template>
   </BaseTable>
+
+  <BtModalConfirm
+    ref="modalConfirm"
+    title="Hapus Data"
+    message="Data ini akan dihapus permanen"
+    icon="trash"
+    icon-color="danger"
+    confirm-text="Hapus"
+    confirm-class="btn-danger"
+    @confirm="remove()"
+  />
 </template>
