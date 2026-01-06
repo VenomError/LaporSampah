@@ -142,9 +142,9 @@ export const logout = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 })
 
 logout.definition = {
-    methods: ["get","head"],
+    methods: ["get","head","post","put","patch","delete","options"],
     url: '/logout',
-} satisfies RouteDefinition<["get","head"]>
+} satisfies RouteDefinition<["get","head","post","put","patch","delete","options"]>
 
 /**
 * @see \App\Http\Controllers\AuthController::logout
@@ -173,6 +173,56 @@ logout.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 logout.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: logout.url(options),
     method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\AuthController::logout
+* @see app/Http/Controllers/AuthController.php:92
+* @route '/logout'
+*/
+logout.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: logout.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\AuthController::logout
+* @see app/Http/Controllers/AuthController.php:92
+* @route '/logout'
+*/
+logout.put = (options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+    url: logout.url(options),
+    method: 'put',
+})
+
+/**
+* @see \App\Http\Controllers\AuthController::logout
+* @see app/Http/Controllers/AuthController.php:92
+* @route '/logout'
+*/
+logout.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+    url: logout.url(options),
+    method: 'patch',
+})
+
+/**
+* @see \App\Http\Controllers\AuthController::logout
+* @see app/Http/Controllers/AuthController.php:92
+* @route '/logout'
+*/
+logout.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: logout.url(options),
+    method: 'delete',
+})
+
+/**
+* @see \App\Http\Controllers\AuthController::logout
+* @see app/Http/Controllers/AuthController.php:92
+* @route '/logout'
+*/
+logout.options = (options?: RouteQueryOptions): RouteDefinition<'options'> => ({
+    url: logout.url(options),
+    method: 'options',
 })
 
 /**

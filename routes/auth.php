@@ -14,7 +14,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->middleware('signed')->name('verification.verify');
     Route::get('/email/verify', [AuthController::class, 'verifyNotice'])->name('verification.notice');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('password.change');
     Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('password.update');
     Route::post('/email/verification-notification', [AuthController::class, 'resendEmail'])->name('verification.send');

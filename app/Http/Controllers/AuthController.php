@@ -104,7 +104,7 @@ class AuthController extends Controller
     }
     public function changePassword()
     {
-        return inertia('Setting/ChangePassword');
+        return inertia('Member/Setting/ChangePassword');
     }
     public function updatePassword(Request $request)
     {

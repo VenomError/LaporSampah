@@ -3,6 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import { wayfinder } from "@laravel/vite-plugin-wayfinder";
 import path from 'path';
+import tailwindcss  from '@tailwindcss/vite';
 
 
 export default defineConfig({
@@ -17,7 +18,8 @@ export default defineConfig({
                 'resources/js/dashboard.js'
             ],
             refresh: true,
-        })
+        }),
+        tailwindcss()
     ],
     resolve: {
         alias: {
