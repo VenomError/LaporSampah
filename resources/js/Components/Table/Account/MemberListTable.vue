@@ -1,40 +1,30 @@
 <script setup>
-import { computed, onMounted, reactive, ref, toRaw, watch } from "vue";
+import { onMounted, reactive, ref, toRaw, watch } from "vue";
 import BaseTable from "@components/Table/BaseTable.vue";
 import BtModalConfirm from "@components/BtModalConfirm.vue";
-
 import axios from "axios";
 import { route } from "@route";
 import { Link, router } from "@inertiajs/vue3";
 
-const cols =
-  ref([
-    { field: "id", title: "ID", isUnique: true, type: "number" },
-    { field: "member.name", title: "Name", isUnique: true, type: "string" },
-    { field: "member.phone", title: "Phone", type: "string" },
-    { field: "member.point", title: "Point", type: "number" },
-    { field: "email", title: "Email", isUnique: true, type: "string" },
-    { field: "status", title: "Status", type: "string" },
-    { field: "role", title: "Role", type: "string" },
-    { field: "created_at", title: "Tanggal Pembuatan", type: "date" },
-    { field: "actions", title: "", type: "string" },
-  ]) || [];
-const rows = ref(null);
+const cols = ref([
+    { field: "id", title: "ID", width: "80px" },
+    { field: "member.name", title: "Nama Member" },
+    { field: "member.phone", title: "Kontak" },
+    { field: "member.point", title: "Poin" },
+    { field: "status", title: "Status & Verifikasi" },
+    { field: "created_at", title: "Bergabung" },
+    { field: "actions", title: "Opsi", sort: false, headerClass: 'justify-center', cellClass: 'justify-center' },
+]);
+
+const rows = ref([]);
 const loading = ref(false);
 
-const params = reactive({
-  search: "",
-  created_at: null,
-  status: "",
-});
+const params = reactive({ search: "", created_at: null, status: "" });
 
 const getUsers = async () => {
   try {
     loading.value = true;
-    const res = await axios.post(
-      route("dashboard.master-data.get-list", { role: "member" }),
-      toRaw(params)
-    );
+    const res = await axios.post(route("dashboard.master-data.get-list", { role: "member" }), toRaw(params));
     rows.value = res.data;
   } catch (error) {
   } finally {
@@ -42,46 +32,29 @@ const getUsers = async () => {
   }
 };
 
+onMounted(() => getUsers());
+watch(() => [params.created_at, params.status], () => getUsers());
+
 const reset = () => {
   params.created_at = null;
   params.status = "";
   params.search = "";
 };
 
-onMounted(() => {
-  getUsers();
-});
-watch(
-  () => [params.created_at, params.status],
-  () => {
-    getUsers();
-  }
-);
-defineExpose({
-  reloadTable: () => getUsers(),
-});
+defineExpose({ reloadTable: () => getUsers() });
 
-// toggle status
+// Toggle Status Logic
 const toggling = ref(new Set());
 function toggleStatus(member_id) {
   if (toggling.value.has(member_id)) return;
-
   toggling.value.add(member_id);
-  router.post(
-    route("api.members.toggle-status", { member: member_id }),
-    {},
-    {
-      onFinish: () => {
-        toggling.value.delete(member_id);
-      },
-      onSuccess: () => {
-        getUsers();
-      },
-    }
-  );
+  router.post(route("api.members.toggle-status", { member: member_id }), {}, {
+      onFinish: () => toggling.value.delete(member_id),
+      onSuccess: () => getUsers(),
+  });
 }
 
-// Removing
+// Removing Logic
 const selectedId = ref(null);
 const modalConfirm = ref(null);
 const showConfirmModal = (id) => {
@@ -89,11 +62,8 @@ const showConfirmModal = (id) => {
   modalConfirm.value.open();
 };
 const remove = () => {
-  const url = route("api.members.destroy", { member: selectedId.value });
-  router.delete(url, {
-    onSuccess: () => {
-      getUsers();
-    },
+  router.delete(route("api.members.destroy", { member: selectedId.value }), {
+    onSuccess: () => getUsers(),
   });
 };
 </script>
@@ -108,118 +78,103 @@ const remove = () => {
     sortColumn="created_at"
     sortDirection="desc"
   >
-    <!-- header -->
     <template #header>
-      <select class="form-select" v-model="params.status">
-        <option value="">All</option>
-        <option value="active">active</option>
-        <option value="non_active">inactive</option>
+      <select v-model="params.status" class="px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl text-[10px] font-black uppercase outline-none focus:ring-4 focus:ring-green-500/10 transition-all">
+        <option value="">Semua Status</option>
+        <option value="active">🟢 Active</option>
+        <option value="non_active">🔴 Inactive</option>
       </select>
-      <input type="date" class="form-control" v-model="params.created_at" />
-      <button class="btn btn-danger" @click="reset">Reset</button>
+      <input type="date" v-model="params.created_at" class="px-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl text-[10px] font-black outline-none transition-all" />
+      <button @click="reset" class="w-11 h-11 flex items-center justify-center bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all shadow-sm">
+        <i class="ti ti-refresh text-xl"></i>
+      </button>
     </template>
-    <!-- body -->
+
     <template #id="data">
-      <h2 class="fw-bold">#{{ data.value.id }}</h2>
+      <span class="font-black text-slate-300 italic text-xs">#{{ data.value.id }}</span>
     </template>
+
     <template #member.name="data">
-      <Link class="text-nowrap text-decoration-underline text-primary">{{
-        data.value.member.name
-      }}</Link>
-    </template>
-    <template #member.point="data">
-      <span class="text-nowrap"
-        >{{ Number(data.value.member?.point ?? 0).toLocaleString("id-ID") }} point</span
-      >
-    </template>
-    <template #member.phone="data">
-      <span class="text-nowrap">{{ data.value.member?.phone }}</span>
-    </template>
-    <template #status="data">
-      <div class="d-flex gap-2 flex-row">
-        <h5 class="fs-14 text-nowrap text-capitalize mt-1 fw-normal">
-          <i class="ti ti-circle-filled fs-12" :class="'text-' + data.value.color"></i>
-          {{ String(data.value.status).replace("_", " ") }}
-        </h5>
-        <h5 class="fs-14 text-nowrap text-capitalize mt-1 fw-normal">
-          <i
-            class="ti ti-circle-filled fs-12"
-            :class="'text-' + (data.value.email_verified_at ? 'success' : 'danger')"
-          ></i>
-          {{ data.value.email_verified_at ? "Verified" : "Not Verified" }}
-        </h5>
+      <div class="flex flex-col">
+          <Link class="font-black text-slate-900 hover:text-green-600 transition-colors">
+            {{ data.value.member.name }}
+          </Link>
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{{ data.value.email }}</span>
       </div>
     </template>
-    <template #created_at="data">
-      <span class="text-nowrap">{{
-        new Date(data.value.created_at).toLocaleString("id-ID", {
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "numeric",
-          hour12: false,
-        })
-      }}</span>
-    </template>
-    <template #actions="data">
-      <div class="d-flex gap-2">
-        <button class="btn btn-primary btn-sm" type="button">
-          <i class="ti ti-eye fs-20 me-2"></i> Detail
-        </button>
-        <button
-          class="btn btn-danger btn-sm"
-          @click="showConfirmModal(data.value?.member?.id)"
-          type="button"
-        >
-          <i class="ti ti-trash fs-20 me-2"></i> Hapus
-        </button>
-        <template v-if="data.value.status === 'active'">
-          <button
-            class="btn btn-danger btn-sm"
-            type="button"
-            :disabled="toggling.has(data.value.member.id)"
-            @click="toggleStatus(data.value.member.id)"
-          >
-            <template v-if="toggling.has(data.value.member.id)">
-              <i class="ti ti-loader-2 ti-spin fs-20 me-2"></i>
-              Processing...
-            </template>
-            <template v-else>
-              <i class="ti ti-forbid-2 fs-20 me-2"></i>
-              Inactivate
-            </template>
-          </button>
-        </template>
 
-        <template v-else>
-          <button
-            class="btn btn-success btn-sm"
-            type="button"
-            :disabled="toggling.has(data.value.member.id)"
-            @click="toggleStatus(data.value.member.id)"
-          >
-            <template v-if="toggling.has(data.value.member.id)">
-              <i class="ti ti-loader-2 ti-spin fs-20 me-2"></i>
-              Processing...
-            </template>
-            <template v-else>
-              <i class="ti ti-check fs-20 me-2"></i>
-              Activate
-            </template>
-          </button>
-        </template>
+    <template #member.point="data">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-50 border border-yellow-100 rounded-lg">
+          <i class="ti ti-coins text-yellow-600"></i>
+          <span class="text-xs font-black text-yellow-700">
+            {{ Number(data.value.member?.point ?? 0).toLocaleString("id-ID") }}
+          </span>
+      </div>
+    </template>
+
+    <template #member.phone="data">
+      <span class="font-bold text-slate-600 text-xs tracking-tight">
+          <i class="ti ti-phone text-slate-300 mr-1"></i> {{ data.value.member?.phone }}
+      </span>
+    </template>
+
+    <template #status="data">
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-center gap-1.5">
+          <span :class="['w-2 h-2 rounded-full', data.value.is_active ? 'bg-green-500' : 'bg-red-500']"></span>
+          <span class="text-[10px] font-black uppercase text-slate-700 tracking-tighter">
+            {{ String(data.value.status).replace("_", " ") }}
+          </span>
+        </div>
+        <div class="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest" :class="data.value.email_verified_at ? 'text-blue-500' : 'text-slate-300'">
+            <i :class="data.value.email_verified_at ? 'ti ti-circle-check-filled' : 'ti ti-circle-x'"></i>
+            {{ data.value.email_verified_at ? "Verified" : "Unverified" }}
+        </div>
+      </div>
+    </template>
+
+    <template #created_at="data">
+      <span class="text-[11px] font-bold text-slate-400 uppercase">
+        {{ new Date(data.value.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) }}
+      </span>
+    </template>
+
+    <template #actions="data">
+      <div class="flex items-center gap-2">
+        <button class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+          <i class="ti ti-eye"></i>
+        </button>
+
+        <button
+          @click="toggleStatus(data.value.member.id)"
+          :disabled="toggling.has(data.value.member.id)"
+          :class="[
+            'w-9 h-9 flex items-center justify-center rounded-xl transition-all shadow-sm',
+            data.value.status === 'active' 
+              ? 'bg-orange-50 text-orange-600 hover:bg-orange-500 hover:text-white' 
+              : 'bg-green-50 text-green-600 hover:bg-green-600 hover:text-white'
+          ]"
+        >
+          <i v-if="toggling.has(data.value.member.id)" class="ti ti-loader-2 animate-spin text-lg"></i>
+          <i v-else :class="data.value.status === 'active' ? 'ti ti-lock' : 'ti ti-lock-open'"></i>
+        </button>
+
+        <button
+          @click="showConfirmModal(data.value?.member?.id)"
+          class="w-9 h-9 flex items-center justify-center bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all shadow-sm"
+        >
+          <i class="ti ti-trash"></i>
+        </button>
       </div>
     </template>
   </BaseTable>
+
   <BtModalConfirm
     ref="modalConfirm"
-    title="Hapus Data"
-    message="Data ini akan dihapus permanen"
-    icon="trash"
-    icon-color="danger"
-    confirm-text="Hapus"
-    confirm-class="btn-danger"
+    title="Hapus Member Gonsa?"
+    message="Penghapusan data member bersifat permanen dan akan menghapus semua riwayat penjemputan terkait."
+    icon="trash-x"
+    confirm-text="Ya, Hapus Member"
     @confirm="remove()"
   />
 </template>

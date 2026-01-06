@@ -1,372 +1,69 @@
-<template>
-  <header class="app-topbar">
-    <div class="page-container topbar-menu">
-      <div class="d-flex align-items-center gap-2">
-        <!-- Sidebar Menu Toggle Button -->
-        <button class="sidenav-toggle-button px-2">
-          <i class="ti ti-menu-deep fs-24"></i>
-        </button>
+<script setup>
+import { ref, inject } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 
-        <!-- Horizontal Menu Toggle Button -->
-        <button
-          class="topnav-toggle-button px-2"
-          data-bs-toggle="collapse"
-          data-bs-target="#topnav-menu-content"
-        >
-          <i class="ti ti-menu-deep fs-22"></i>
+const { auth } = usePage().props;
+const isUserDropdownOpen = ref(false);
+const toggleSidebar = inject('toggleSidebar');
+
+const notifications = [
+    { id: 1, title: 'Laporan Baru', desc: 'Sampah menumpuk di Sektor 5', color: 'bg-red-500' },
+    { id: 2, title: 'Tukar Poin', desc: 'Budi mengajukan penukaran', color: 'bg-blue-500' },
+];
+</script>
+
+<template>
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-100 h-20 px-4 md:px-10 flex items-center justify-between shadow-sm">
+    <div class="flex items-center gap-4">
+      <button @click="toggleSidebar" class="w-11 h-11 flex lg:hidden items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:text-green-600 transition-all">
+        <i class="ti ti-menu-2 text-2xl"></i>
+      </button>
+      <p class="hidden md:block text-[10px] font-black text-slate-300 uppercase tracking-[0.3em]">Administrator Panel</p>
+    </div>
+
+    <div class="flex items-center gap-2 md:gap-4">
+      <div class="relative group hidden sm:block">
+        <button class="w-11 h-11 flex items-center justify-center rounded-xl text-slate-400 hover:bg-slate-50 relative">
+          <i class="ti ti-bell text-2xl"></i>
+          <span class="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
         </button>
       </div>
 
-      <div class="d-flex align-items-center gap-2">
-        <!-- Notification Dropdown -->
-        <div class="topbar-item">
-          <div class="dropdown">
-            <button
-              class="topbar-link dropdown-toggle drop-arrow-none"
-              data-bs-toggle="dropdown"
-              data-bs-offset="0,25"
-              type="button"
-              data-bs-auto-close="outside"
-              aria-haspopup="false"
-              aria-expanded="false"
-            >
-              <i class="ti ti-bell animate-ring fs-22"></i>
-              <span class="noti-icon-badge"></span>
-            </button>
+      <div class="h-8 w-[1px] bg-slate-100 mx-1"></div>
 
-            <div
-              class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
-              style="min-height: 300px"
-            >
-              <div class="p-3 border-bottom border-dashed">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <h6 class="m-0 fs-16 fw-semibold">Notifications</h6>
-                  </div>
-                  <div class="col-auto">
-                    <div class="dropdown">
-                      <a
-                        href="#"
-                        class="dropdown-toggle drop-arrow-none link-dark"
-                        data-bs-toggle="dropdown"
-                        data-bs-offset="0,15"
-                        aria-expanded="false"
-                      >
-                        <i class="ti ti-settings fs-22 align-middle"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Mark as Read</a
-                        >
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Delete All</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Do not Disturb</a
-                        >
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item"
-                          >Other Settings</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="position-relative z-2 card shadow-none rounded-0"
-                style="max-height: 300px"
-                data-simplebar
-              >
-                <!-- item-->
-                <div
-                  class="dropdown-item notification-item py-2 text-wrap active"
-                  id="notification-1"
-                >
-                  <span class="d-flex align-items-center">
-                    <span class="me-3 position-relative flex-shrink-0">
-                      <img
-                        src="@template/dashboard/images/users/avatar-2.jpg"
-                        class="avatar-md rounded-circle"
-                        alt=""
-                      />
-                      <span
-                        class="position-absolute rounded-pill bg-danger notification-badge"
-                      >
-                        <i class="ti ti-message-circle"></i>
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </span>
-                    <span class="flex-grow-1 text-muted">
-                      <span class="fw-medium text-body">Glady Haid</span> commented on
-                      <span class="fw-medium text-body">paces admin status</span>
-                      <br />
-                      <span class="fs-12">25m ago</span>
-                    </span>
-                    <span class="notification-item-close">
-                      <button
-                        type="button"
-                        class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                        data-dismissible="#notification-1"
-                      >
-                        <i class="ti ti-x fs-16"></i>
-                      </button>
-                    </span>
-                  </span>
-                </div>
-
-                <!-- item-->
-                <div
-                  class="dropdown-item notification-item py-2 text-wrap"
-                  id="notification-2"
-                >
-                  <span class="d-flex align-items-center">
-                    <span class="me-3 position-relative flex-shrink-0">
-                      <img
-                        src="@template/dashboard/images/users/avatar-4.jpg"
-                        class="avatar-md rounded-circle"
-                        alt=""
-                      />
-                      <span
-                        class="position-absolute rounded-pill bg-info notification-badge"
-                      >
-                        <i class="ti ti-currency-dollar"></i>
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </span>
-                    <span class="flex-grow-1 text-muted">
-                      <span class="fw-medium text-body">Tommy Berry</span> donated
-                      <span class="text-success">$100.00</span> for
-                      <span class="fw-medium text-body">Carbon removal program</span>
-                      <br />
-                      <span class="fs-12">58m ago</span>
-                    </span>
-                    <span class="notification-item-close">
-                      <button
-                        type="button"
-                        class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                        data-dismissible="#notification-2"
-                      >
-                        <i class="ti ti-x fs-16"></i>
-                      </button>
-                    </span>
-                  </span>
-                </div>
-
-                <!-- item-->
-                <div
-                  class="dropdown-item notification-item py-2 text-wrap"
-                  id="notification-3"
-                >
-                  <span class="d-flex align-items-center">
-                    <div class="avatar-md flex-shrink-0 me-3">
-                      <span
-                        class="avatar-title bg-success-subtle text-success rounded-circle fs-22"
-                      >
-                        <iconify-icon
-                          icon="solar:wallet-money-bold-duotone"
-                        ></iconify-icon>
-                      </span>
-                    </div>
-                    <span class="flex-grow-1 text-muted">
-                      You withdraw a <span class="fw-medium text-body">$500</span> by
-                      <span class="fw-medium text-body">New York ATM</span>
-                      <br />
-                      <span class="fs-12">2h ago</span>
-                    </span>
-                    <span class="notification-item-close">
-                      <button
-                        type="button"
-                        class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                        data-dismissible="#notification-3"
-                      >
-                        <i class="ti ti-x fs-16"></i>
-                      </button>
-                    </span>
-                  </span>
-                </div>
-
-                <!-- item-->
-                <div
-                  class="dropdown-item notification-item py-2 text-wrap"
-                  id="notification-4"
-                >
-                  <span class="d-flex align-items-center">
-                    <span class="me-3 position-relative flex-shrink-0">
-                      <img
-                        src="@template/dashboard/images/users/avatar-7.jpg"
-                        class="avatar-md rounded-circle"
-                        alt=""
-                      />
-                      <span
-                        class="position-absolute rounded-pill bg-secondary notification-badge"
-                      >
-                        <i class="ti ti-plus"></i>
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </span>
-                    <span class="flex-grow-1 text-muted">
-                      <span class="fw-medium text-body">Richard Allen</span> followed you
-                      in <span class="fw-medium text-body">Facebook</span>
-                      <br />
-                      <span class="fs-12">3h ago</span>
-                    </span>
-                    <span class="notification-item-close">
-                      <button
-                        type="button"
-                        class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                        data-dismissible="#notification-4"
-                      >
-                        <i class="ti ti-x fs-16"></i>
-                      </button>
-                    </span>
-                  </span>
-                </div>
-
-                <!-- item-->
-                <div
-                  class="dropdown-item notification-item py-2 text-wrap"
-                  id="notification-5"
-                >
-                  <span class="d-flex align-items-center">
-                    <span class="me-3 position-relative flex-shrink-0">
-                      <img
-                        src="@template/dashboard/images/users/avatar-10.jpg"
-                        class="avatar-md rounded-circle"
-                        alt=""
-                      />
-                      <span
-                        class="position-absolute rounded-pill bg-danger notification-badge"
-                      >
-                        <i class="ti ti-heart-filled"></i>
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </span>
-                    <span class="flex-grow-1 text-muted">
-                      <span class="fw-medium text-body">Victor Collier</span> liked you
-                      recent photo in <span class="fw-medium text-body">Instagram</span>
-                      <br />
-                      <span class="fs-12">10h ago</span>
-                    </span>
-                    <span class="notification-item-close">
-                      <button
-                        type="button"
-                        class="btn btn-ghost-danger rounded-circle btn-sm btn-icon"
-                        data-dismissible="#notification-5"
-                      >
-                        <i class="ti ti-x fs-16"></i>
-                      </button>
-                    </span>
-                  </span>
-                </div>
-              </div>
-
-              <div
-                style="height: 300px"
-                class="d-flex align-items-center justify-content-center text-center position-absolute top-0 bottom-0 start-0 end-0 z-1"
-              >
-                <div>
-                  <iconify-icon
-                    icon="line-md:bell-twotone-alert-loop"
-                    class="fs-80 text-secondary mt-2"
-                  ></iconify-icon>
-                  <h4 class="fw-semibold mb-0 fst-italic lh-base mt-3">
-                    Hey! 👋 <br />You have no any notifications
-                  </h4>
-                </div>
-              </div>
-
-              <!-- All-->
-              <a
-                href="javascript:void(0);"
-                class="dropdown-item notification-item position-fixed z-2 bottom-0 text-center text-reset text-decoration-underline link-offset-2 fw-bold notify-item border-top border-light py-2"
-              >
-                View All
-              </a>
-            </div>
+      <div class="relative">
+        <button @click="isUserDropdownOpen = !isUserDropdownOpen" class="flex items-center gap-3 p-1 rounded-2xl hover:bg-slate-50 transition-all">
+          <div class="w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-sm shrink-0">
+            <img :src="`https://ui-avatars.com/api/?name=${auth.user.name}&background=10b981&color=fff`" alt="Avatar">
           </div>
-        </div>
-
-        <!-- Light/Dark Mode Button -->
-        <div class="topbar-item d-none d-sm-flex">
-          <button class="topbar-link" id="light-dark-mode" type="button">
-            <i class="ti ti-moon fs-22"></i>
-          </button>
-        </div>
-
-        <!-- User Dropdown -->
-        <div class="topbar-item nav-user">
-          <div class="dropdown">
-            <a
-              class="topbar-link dropdown-toggle drop-arrow-none px-2"
-              data-bs-toggle="dropdown"
-              data-bs-offset="0,19"
-              type="button"
-              aria-haspopup="false"
-              aria-expanded="false"
-            >
-              <img
-                src="@template/dashboard/images/users/avatar-1.jpg"
-                width="32"
-                class="rounded-circle me-lg-2 d-flex"
-                alt="user-image"
-              />
-              <span class="d-lg-flex flex-column gap-1 d-none">
-                <h5 class="my-0">Dhanoo K.</h5>
-                <h6 class="my-0 fw-normal">Premium</h6>
-              </span>
-              <i class="ti ti-chevron-down d-none d-lg-block align-middle ms-2"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end">
-              <!-- item-->
-              <div class="dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome !</h6>
-              </div>
-
-              <!-- item-->
-              <a href="javascript:void(0);" class="dropdown-item">
-                <i class="ti ti-user-hexagon me-1 fs-17 align-middle"></i>
-                <span class="align-middle">My Account</span>
-              </a>
-
-              <!-- item-->
-              <a href="javascript:void(0);" class="dropdown-item">
-                <i class="ti ti-wallet me-1 fs-17 align-middle"></i>
-                <span class="align-middle"
-                  >Wallet : <span class="fw-semibold">$985.25</span></span
-                >
-              </a>
-
-              <!-- item-->
-              <a href="javascript:void(0);" class="dropdown-item">
-                <i class="ti ti-settings me-1 fs-17 align-middle"></i>
-                <span class="align-middle">Settings</span>
-              </a>
-
-              <!-- item-->
-              <a href="javascript:void(0);" class="dropdown-item">
-                <i class="ti ti-lifebuoy me-1 fs-17 align-middle"></i>
-                <span class="align-middle">Support</span>
-              </a>
-
-              <div class="dropdown-divider"></div>
-
-              <!-- item-->
-              <a href="javascript:void(0);" class="dropdown-item">
-                <i class="ti ti-lock-square-rounded me-1 fs-17 align-middle"></i>
-                <span class="align-middle">Lock Screen</span>
-              </a>
-
-              <!-- item-->
-              <a href="/logout" class="dropdown-item active fw-semibold text-danger">
-                <i class="ti ti-logout me-1 fs-17 align-middle"></i>
-                <span class="align-middle">Sign Out</span>
-              </a>
-            </div>
+          <div class="hidden lg:block text-left pr-2">
+            <p class="text-sm font-black text-slate-900 truncate w-24 leading-none">{{ auth.user.name }}</p>
+            <p class="text-[9px] font-bold text-green-600 uppercase tracking-widest mt-1">Super Admin</p>
           </div>
-        </div>
+        </button>
+
+        <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="transform scale-95 opacity-0 -translate-y-2"
+          enter-to-class="transform scale-100 opacity-100 translate-y-0"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="transform scale-100 opacity-100 translate-y-0"
+          leave-to-class="transform scale-95 opacity-0 -translate-y-2"
+        >
+          <div v-if="isUserDropdownOpen" class="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden py-2">
+            <div class="px-4 py-3 border-b border-slate-50 mb-1">
+                <p class="text-[9px] font-black text-slate-400 uppercase">Login Sebagai</p>
+                <p class="text-xs font-bold text-slate-900 truncate">{{ auth.user.email }}</p>
+            </div>
+            <Link :href="route('dashboard.settings.account')" class="flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50 hover:text-green-600">
+                <i class="ti ti-user-circle text-lg opacity-40"></i> Profil Saya
+            </Link>
+            <div class="h-[1px] bg-slate-50 my-1 mx-2"></div>
+            <Link :href="route('logout')" method="post" as="button" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-black text-red-500 hover:bg-red-50 text-left">
+                <i class="ti ti-logout text-lg"></i> KELUAR PANEL
+            </Link>
+          </div>
+        </Transition>
       </div>
     </div>
   </header>
