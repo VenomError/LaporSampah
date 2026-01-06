@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Enum\PickUpStatus;
 use App\Models\Member;
 use App\Models\PickUp;
+use App\Models\PointReedmtion;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +53,7 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             'dashboard' => 10,
-            'point_reedemtion' => 2,
+            'point_reedemtion' => PointReedmtion::submitted()->count(),
             'pickup' => $this->getPickupCount()
         ];
     }

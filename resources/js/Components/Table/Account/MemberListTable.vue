@@ -96,7 +96,7 @@ const remove = () => {
 
     <template #member.name="data">
       <div class="flex flex-col">
-          <Link class="font-black text-slate-900 hover:text-green-600 transition-colors">
+          <Link :href="route('dashboard.master-data.member-detail' , {member : data.value.member.id})" class="font-black text-slate-900 hover:text-green-600 transition-colors">
             {{ data.value.member.name }}
           </Link>
           <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{{ data.value.email }}</span>
@@ -141,9 +141,9 @@ const remove = () => {
 
     <template #actions="data">
       <div class="flex items-center gap-2">
-        <button class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+        <Link :href="route('dashboard.master-data.member-detail' , {member : data.value.member.id})" class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
           <i class="ti ti-eye"></i>
-        </button>
+        </Link>
 
         <button
           @click="toggleStatus(data.value.member.id)"

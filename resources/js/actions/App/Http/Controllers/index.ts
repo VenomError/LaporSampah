@@ -4,6 +4,7 @@ import MemberController from './MemberController'
 import PickUpController from './PickUpController'
 import NotificationController from './NotificationController'
 import Dashboard from './Dashboard'
+import OperatorDashboardController from './OperatorDashboardController'
 import Api from './Api'
 
 const Controllers = {
@@ -13,6 +14,7 @@ const Controllers = {
     PickUpController: Object.assign(PickUpController, PickUpController),
     NotificationController: Object.assign(NotificationController, NotificationController),
     Dashboard: Object.assign(Dashboard, Dashboard),
+    OperatorDashboardController: Object.assign(OperatorDashboardController, OperatorDashboardController),
     Api: Object.assign(Api, Api),
 }
 

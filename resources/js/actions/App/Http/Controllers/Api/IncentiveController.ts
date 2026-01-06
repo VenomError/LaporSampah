@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 export const destroy = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -50,7 +50,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 destroy.url = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -83,7 +83,7 @@ destroy.url = (args: { incentive: number | { id: number } } | [incentive: number
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 destroy.delete = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -93,7 +93,7 @@ destroy.delete = (args: { incentive: number | { id: number } } | [incentive: num
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 export const toggleStatus = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -108,7 +108,7 @@ toggleStatus.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 toggleStatus.url = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -141,7 +141,7 @@ toggleStatus.url = (args: { incentive: number | { id: number } } | [incentive: n
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 toggleStatus.post = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -149,6 +149,98 @@ toggleStatus.post = (args: { incentive: number | { id: number } } | [incentive: 
     method: 'post',
 })
 
-const IncentiveController = { store, destroy, toggleStatus }
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::redemptionList
+* @see app/Http/Controllers/Api/IncentiveController.php:91
+* @route '/api/redemptions/list'
+*/
+export const redemptionList = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: redemptionList.url(options),
+    method: 'post',
+})
+
+redemptionList.definition = {
+    methods: ["post"],
+    url: '/api/redemptions/list',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::redemptionList
+* @see app/Http/Controllers/Api/IncentiveController.php:91
+* @route '/api/redemptions/list'
+*/
+redemptionList.url = (options?: RouteQueryOptions) => {
+    return redemptionList.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::redemptionList
+* @see app/Http/Controllers/Api/IncentiveController.php:91
+* @route '/api/redemptions/list'
+*/
+redemptionList.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: redemptionList.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::updateRedemptionStatus
+* @see app/Http/Controllers/Api/IncentiveController.php:113
+* @route '/api/redemptions/{redemption}/update-status'
+*/
+export const updateRedemptionStatus = (args: { redemption: number | { id: number } } | [redemption: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateRedemptionStatus.url(args, options),
+    method: 'post',
+})
+
+updateRedemptionStatus.definition = {
+    methods: ["post"],
+    url: '/api/redemptions/{redemption}/update-status',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::updateRedemptionStatus
+* @see app/Http/Controllers/Api/IncentiveController.php:113
+* @route '/api/redemptions/{redemption}/update-status'
+*/
+updateRedemptionStatus.url = (args: { redemption: number | { id: number } } | [redemption: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { redemption: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { redemption: args.id }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            redemption: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        redemption: typeof args.redemption === 'object'
+        ? args.redemption.id
+        : args.redemption,
+    }
+
+    return updateRedemptionStatus.definition.url
+            .replace('{redemption}', parsedArgs.redemption.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Api\IncentiveController::updateRedemptionStatus
+* @see app/Http/Controllers/Api/IncentiveController.php:113
+* @route '/api/redemptions/{redemption}/update-status'
+*/
+updateRedemptionStatus.post = (args: { redemption: number | { id: number } } | [redemption: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateRedemptionStatus.url(args, options),
+    method: 'post',
+})
+
+const IncentiveController = { store, destroy, toggleStatus, redemptionList, updateRedemptionStatus }
 
 export default IncentiveController

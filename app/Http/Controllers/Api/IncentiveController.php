@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Incentive;
+use App\Models\PointReedmtion;
 use App\Repository\IncentiveRepository;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,9 @@ class IncentiveController extends Controller
                 $data['image'] = $request->file('image')->store('incentive', 'public');
             }
             $repo->create($data);
-            flash("Incentive Berhasil di Tambahkan");
+            flash('Incentive Berhasil di Tambahkan');
         } catch (\Throwable $th) {
-            flash("Incentive Gagal di Tambahkan", 'error');
+            flash('Incentive Gagal di Tambahkan', 'error');
             //throw $th;
         } finally {
             return back();
@@ -65,9 +66,9 @@ class IncentiveController extends Controller
     public function destroy(Incentive $incentive)
     {
         if ($incentive->delete()) {
-            flash("Incentive Berhasil di Hapus");
+            flash('Incentive Berhasil di Hapus');
         } else {
-            flash()->error("Incentive gagal di Hapus");
+            flash()->error('Incentive gagal di Hapus');
         }
 
         return back();
@@ -77,13 +78,50 @@ class IncentiveController extends Controller
     {
         if ($incentive->is_active) {
             $incentive->is_active = false;
-            flash("Incentive Inactivated");
+            flash('Incentive Inactivated');
         } else {
             $incentive->is_active = true;
-            flash("Incentive Activated");
+            flash('Incentive Activated');
         }
 
         $incentive->save();
+        return back();
+    }
+
+    public function redemptionList(Request $request)
+    {
+        $query = PointReedmtion::with(['member', 'incentive']);
+
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->search) {
+            $query
+                ->whereHas('member', function ($q) use ($request) {
+                    $q->where('name', 'like', "%{$request->search}%");
+                })
+                ->orWhereHas('incentive', function ($q) use ($request) {
+                    $q->where('name', 'like', "%{$request->search}%");
+                });
+        }
+
+        // Kita kirim data yang sudah di-append (color & icon dari model)
+        return response()->json($query->latest()->get());
+    }
+
+    public function updateRedemptionStatus(Request $request, PointReedmtion $redemption)
+    {
+        $request->validate([
+            'status' => 'required', // Laravel akan otomatis memvalidasi terhadap Enum jika di-cast
+        ]);
+
+        // Update status menggunakan Enum
+        $redemption->update([
+            'status' => $request->status,
+        ]);
+
+        sweetalert('Status berhasil diubah ke ' . $request->status);
         return back();
     }
 }

@@ -46,7 +46,7 @@ onMounted(() => { fetchCount(); emit("register-refresh", fetchCount); });
 
 const navigations = computed(() => ({
   dashboard: [
-    { title: "Dashboard", route: route("dashboard"), icon: 'dashboard', count: count.value.dashboard },
+    { title: "Dashboard", route: route("dashboard"), icon: 'dashboard'},
     { title: "Penukaran Point", route: route("dashboard.point.reedemtion"), icon: 'gift', count: count.value.point_reedemtion },
     { title: "Lokasi Jemput", route: route("dashboard.pickup.location"), icon: 'map-pin' },
     { title: "Lokasi Member", route: route("dashboard.member.location"), icon: 'user-pin' },
@@ -56,6 +56,7 @@ const navigations = computed(() => ({
     { title: "Permintaan Baru", route: route("dashboard.pickup.status", { status: "pending" }), icon: 'bell-ringing', count: count.value.pickup.pending, color: 'text-red-600 bg-red-50' },
     { title: "Sedang Proses", route: route("dashboard.pickup.status", { status: "processing" }), icon: 'truck-delivery', count: count.value.pickup.processing, color: 'text-blue-600 bg-blue-50' },
     { title: "Selesai", route: route("dashboard.pickup.status", { status: "completed" }), icon: 'circle-check', count: count.value.pickup.completed, color: 'text-green-600 bg-green-50' },
+    { title: "Ditolak", route: route("dashboard.pickup.status", { status: "rejected" }), icon: 'x'},
   ],
   master_data: [
     { title: "Data Admin", route: route("dashboard.master-data.admin"), icon: 'shield-lock' },
@@ -64,7 +65,6 @@ const navigations = computed(() => ({
     { title: "Data Insentif", route: route("dashboard.master-data.incentive"), icon: 'package' },
   ],
   pengaturan: [
-    { title: "Sistem", route: route("dashboard.settings.system"), icon: 'settings' },
     { title: "Akun", route: route("dashboard.settings.account"), icon: 'user-cog' },
   ]
 }));
@@ -104,11 +104,5 @@ const navigations = computed(() => ({
       </div>
     </div>
 
-    <div class="p-6 border-t border-slate-50">
-      <div class="flex items-center gap-3 px-2">
-        <div class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center"><i class="ti ti-terminal-2 text-slate-400"></i></div>
-        <div class="flex-1 min-w-0"><p class="text-[11px] font-black text-slate-900 truncate uppercase">System Ready</p><p class="text-[9px] font-bold text-green-600 uppercase animate-pulse">Running</p></div>
-      </div>
-    </div>
   </aside>
 </template>

@@ -51,4 +51,15 @@ class PointReedmtion extends Model
     {
         return $this->status->icon();
     }
+
+    /**
+     * Scope a query to only include Submitted
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSubmitted($query)
+    {
+        return $query->where('status' , PointReedemedStatus::SUBMITTED);
+    }
 }

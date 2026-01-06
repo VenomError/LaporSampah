@@ -1,6 +1,7 @@
 <script setup>
 import { ref, inject } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import {route} from "@route";
 
 const { auth } = usePage().props;
 const isUserDropdownOpen = ref(false);

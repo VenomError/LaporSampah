@@ -16,10 +16,12 @@ class PickupController extends Controller
 
     public function getPickup(Request $request)
     {
-
         $query = PickUp::query();
         $query->when($request->status, fn($q) => $q->whereStatus($request->status));
-        $query->when($request->created_at, fn($q) => $q->whereDate('created_at', $request->created_at));
+        $query->when(
+            $request->created_at,
+            fn($q) => $q->whereDate('created_at', $request->created_at),
+        );
         $query->with(['operator', 'member']);
         $query->latest();
         $pickups = $query->get();
@@ -46,12 +48,23 @@ class PickupController extends Controller
         $icon = $status->tableIcon();
         $today = PickUp::whereStatus($status)->whereToday('updated_at')->count();
         $total = PickUp::whereStatus($status)->count();
-        return inertia('Dashboard/Pickup/PickupStatus', compact(
-            'status',
-            'today',
-            'total',
-            'icon',
-            'color'
-        ));
+        return inertia(
+            'Dashboard/Pickup/PickupStatus',
+            compact('status', 'today', 'total', 'icon', 'color'),
+        );
+    }
+
+    public function show(PickUp $pickup)
+    {
+        $pickup->load(['member', 'operator']);
+
+        return inertia('Dashboard/Pickup/Show', [
+            'pickup' => $pickup,
+            // Kita kirim koordinat dalam format array untuk Leaflet
+            'location' => [
+                'lat' => $pickup->location->latitude, // Sesuaikan field di database kamu
+                'lng' => $pickup->location->longitude,
+            ],
+        ]);
     }
 }

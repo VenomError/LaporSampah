@@ -4,6 +4,7 @@ import pickups from './pickups'
 import operators86f56c from './operators'
 import members from './members'
 import incentive from './incentive'
+import redemptions from './redemptions'
 /**
 * @see \App\Http\Controllers\Api\OperatorController::operators
 * @see app/Http/Controllers/Api/OperatorController.php:16
@@ -54,6 +55,7 @@ const api = {
     operators: Object.assign(operators, operators86f56c),
     members: Object.assign(members, members),
     incentive: Object.assign(incentive, incentive),
+    redemptions: Object.assign(redemptions, redemptions),
 }
 
 export default api

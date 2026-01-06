@@ -158,17 +158,17 @@ defineExpose({ reloadTable: () => getPickups() });
         </template>
 
         <template #member_name="data">
-          <div class="flex flex-col">
+          <Link :href="route('dashboard.master-data.member-detail' , {member : data.value.member.id})" class="flex flex-col">
               <span class="font-black text-slate-900">{{ data.value.member_name }}</span>
               <span class="text-[9px] font-bold text-slate-300 uppercase tracking-tighter">Verified Member</span>
-          </div>
+          </Link>
         </template>
 
         <template #operator_name="data">
-          <div v-if="data.value.operator_name" class="flex items-center gap-2">
+          <Link :href="route('dashboard.master-data.operator-detail' , {operator : data.value.operator.id})" v-if="data.value.operator_name" class="flex items-center gap-2">
              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center italic font-black text-[10px]">OP</span>
              <span class="font-bold text-slate-700">{{ data.value.operator_name }}</span>
-          </div>
+          </Link>
           <button
             v-else-if="!['rejected', 'cancelled', 'completed'].includes(data.value.status)"
             @click="showModalAssign(data.value.id)"
@@ -202,9 +202,9 @@ defineExpose({ reloadTable: () => getPickups() });
 
         <template #actions="data">
           <div class="flex gap-2">
-            <button class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-green-600 hover:text-white transition-all">
+            <Link :href="route('dashboard.pickup.show' , {pickup : data.value.id})" class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-green-600 hover:text-white transition-all">
               <i class="ti ti-eye text-lg"></i>
-            </button>
+            </Link>
             <button
               v-if="!data.value.operator_name && !['rejected', 'cancelled', 'completed'].includes(data.value.status)"
               @click="showConfirmModal(data.value.id)"

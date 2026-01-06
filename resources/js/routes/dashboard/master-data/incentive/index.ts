@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::list
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:99
 * @route '/dashboard/master-data/incentive/list'
 */
 export const list = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ list.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::list
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:99
 * @route '/dashboard/master-data/incentive/list'
 */
 list.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ list.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\MasterDataController::list
-* @see app/Http/Controllers/Dashboard/MasterDataController.php:107
+* @see app/Http/Controllers/Dashboard/MasterDataController.php:99
 * @route '/dashboard/master-data/incentive/list'
 */
 list.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

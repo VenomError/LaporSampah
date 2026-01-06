@@ -31,3 +31,9 @@ Route::post('/members/{member}/toggle-status', [MemberController::class, 'toggle
 Route::post('/incentive', [IncentiveController::class, 'store'])->name('incentive.store');
 Route::delete('/incentive/{incentive}', [IncentiveController::class, 'destroy'])->name('incentive.destroy');
 Route::post('/incentive/{incentive}/toggle-status', [IncentiveController::class, 'toggleStatus'])->name('incentive.toggle-status');
+
+// Point Redemptions
+Route::prefix('redemptions')->name('redemptions.')->group(function () {
+    Route::post('/list', [IncentiveController::class, 'redemptionList'])->name('list');
+    Route::post('/{redemption}/update-status', [IncentiveController::class, 'updateRedemptionStatus'])->name('update-status');
+});

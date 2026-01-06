@@ -22,6 +22,8 @@
         "@flasher/flasher": "file:vendor/php-flasher/flasher/Resources",
         "@inertiajs/vue3": "^2.2.19",
         "@vitejs/plugin-vue": "^6.0.2",
+        "chart.js": "^4.5.1",
+        "vue-chartjs": "^5.3.3",
         "ziggy-js": "^2.6.0"
     }
 }

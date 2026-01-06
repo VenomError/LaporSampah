@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::store
-* @see app/Http/Controllers/Api/IncentiveController.php:23
+* @see app/Http/Controllers/Api/IncentiveController.php:24
 * @route '/api/incentive'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 export const destroy = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -50,7 +50,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 destroy.url = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -83,7 +83,7 @@ destroy.url = (args: { incentive: number | { id: number } } | [incentive: number
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::destroy
-* @see app/Http/Controllers/Api/IncentiveController.php:65
+* @see app/Http/Controllers/Api/IncentiveController.php:66
 * @route '/api/incentive/{incentive}'
 */
 destroy.delete = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -93,7 +93,7 @@ destroy.delete = (args: { incentive: number | { id: number } } | [incentive: num
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 export const toggleStatus = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -108,7 +108,7 @@ toggleStatus.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 toggleStatus.url = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -141,7 +141,7 @@ toggleStatus.url = (args: { incentive: number | { id: number } } | [incentive: n
 
 /**
 * @see \App\Http\Controllers\Api\IncentiveController::toggleStatus
-* @see app/Http/Controllers/Api/IncentiveController.php:76
+* @see app/Http/Controllers/Api/IncentiveController.php:77
 * @route '/api/incentive/{incentive}/toggle-status'
 */
 toggleStatus.post = (args: { incentive: number | { id: number } } | [incentive: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({

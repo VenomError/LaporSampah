@@ -93,12 +93,12 @@ const remove = () => {
     </template>
 
     <template #operator.name="data">
-      <div class="flex items-center gap-3">
+      <Link :href="route('dashboard.master-data.operator-detail' , {operator : data.value.operator.id})" class="flex items-center gap-3">
           <div class="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center text-green-600 font-black text-xs">
               {{ data.value.operator.name.charAt(0) }}
           </div>
           <span class="font-black text-slate-900">{{ data.value.operator.name }}</span>
-      </div>
+      </Link>
     </template>
 
     <template #email="data">
@@ -128,9 +128,9 @@ const remove = () => {
 
     <template #actions="data">
       <div class="flex items-center gap-2">
-        <button class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+        <Link :href="route('dashboard.master-data.operator-detail' , {operator : data.value.operator.id})" class="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
           <i class="ti ti-eye"></i>
-        </button>
+        </Link>
 
         <button
           @click="toggleStatus(data.value.operator.id)"

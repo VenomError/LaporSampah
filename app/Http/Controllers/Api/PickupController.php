@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\PickUp;
 use App\Models\Operator;
 use App\Enum\PickUpStatus;
+use App\Models\PointReedmtion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repository\PickupRepository;
@@ -60,7 +61,7 @@ class PickupController extends Controller
         $pickups = compact('pending', 'processing', 'completed', 'rejected', 'cancelled');
         $data = [
             'dashboard' => 10,
-            'point_reedemtion' => 2,
+            'point_reedemtion' => PointReedmtion::submitted()->count(),
             'pickup' => $pickups
         ];
 

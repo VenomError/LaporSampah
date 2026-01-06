@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Enum\UserRole;
-use App\Http\Controllers\Controller;
-use App\Models\Incentive;
+use App\Models\Operator;
 use App\Models\User;
-use App\Repository\UserRepository;
+use App\Enum\UserRole;
+use App\Models\Member;
+use App\Models\Incentive;
 use Illuminate\Http\Request;
+use App\Repository\UserRepository;
+use App\Http\Controllers\Controller;
 
 class MasterDataController extends Controller
 {
@@ -20,19 +22,15 @@ class MasterDataController extends Controller
     {
         $userData = $request->validate([
             'email' => 'required|email|unique:users,email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
         try {
             $userRepo->addAdmin($userData);
-            flash()
-                ->option('position', 'bottom-right')
-                ->success('Berhasil Menambahkan Admin');
+            flash()->option('position', 'bottom-right')->success('Berhasil Menambahkan Admin');
 
             return back();
         } catch (\Throwable $th) {
-            flash()
-                ->option('position', 'bottom-right')
-                ->error('Gagal Menambahkan Admin');
+            flash()->option('position', 'bottom-right')->error('Gagal Menambahkan Admin');
             return back();
         }
     }
@@ -45,25 +43,19 @@ class MasterDataController extends Controller
         ]);
         try {
             $userRepo->update($user, $data);
-
         } catch (\Throwable $th) {
             //throw $th;
         }
-
     }
 
     public function adminRemove(User $user, UserRepository $userRepo)
     {
         try {
             $userRepo->remove($user);
-            flash()
-                ->option('position', 'bottom-right')
-                ->success('Berhasil Menghapus Admin');
+            flash()->option('position', 'bottom-right')->success('Berhasil Menghapus Admin');
             return back();
         } catch (\Throwable $th) {
-            flash()
-                ->option('position', 'bottom-right')
-                ->error('Gagal Menghapus Admin');
+            flash()->option('position', 'bottom-right')->error('Gagal Menghapus Admin');
             return back();
         }
     }
@@ -106,11 +98,13 @@ class MasterDataController extends Controller
 
     public function getListIncentive(Request $request)
     {
-
         $query = Incentive::query();
 
         // filter date
-        $query->when($request->created_at, fn($q) => $q->whereDate('created_at', $request->created_at));
+        $query->when(
+            $request->created_at,
+            fn($q) => $q->whereDate('created_at', $request->created_at),
+        );
         // filter status
         if ($request->filled('is_active')) {
             $query->where('is_active', $request->is_active);
@@ -119,5 +113,43 @@ class MasterDataController extends Controller
         $incentives = $query->get();
 
         return response()->json($incentives);
+    }
+
+    public function memberDetail(Member $member)
+    {
+        // Ambil riwayat penjemputan khusus member ini
+        $pickups = \App\Models\Pickup::where('member_id', $member->id)
+            ->with('operator')
+            ->latest()
+            ->get();
+        return inertia('Dashboard/MasterData/MemberDetail', [
+            'member' => $member,
+            'pickups' => $pickups,
+            'stats' => [
+                'total_weight' => $pickups->where('status', 'completed')->sum('weight'),
+                'total_pickups' => $pickups->count(),
+                'total_points' => $member->point,
+            ],
+        ]);
+    }
+
+    public function operatorDetail(Operator $operator)
+    {
+        $operator->load('account');
+        // Ambil riwayat penjemputan yang ditugaskan ke operator ini
+        $pickups = \App\Models\Pickup::where('operator_id', $operator->id)
+            ->with('member')
+            ->latest()
+            ->get();
+
+        return inertia('Dashboard/MasterData/OperatorDetail', [
+            'operator' => $operator,
+            'pickups' => $pickups,
+            'stats' => [
+                'total_completed' => $pickups->where('status', 'completed')->count(),
+                'total_weight' => $pickups->where('status', 'completed')->sum('weight'),
+                'total_assigned' => $pickups->count(),
+            ],
+        ]);
     }
 }

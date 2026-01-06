@@ -45,7 +45,7 @@ system.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\SettingController::account
-* @see app/Http/Controllers/Dashboard/SettingController.php:16
+* @see app/Http/Controllers/Dashboard/SettingController.php:15
 * @route '/dashboard/settings/account'
 */
 export const account = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ account.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\SettingController::account
-* @see app/Http/Controllers/Dashboard/SettingController.php:16
+* @see app/Http/Controllers/Dashboard/SettingController.php:15
 * @route '/dashboard/settings/account'
 */
 account.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ account.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\SettingController::account
-* @see app/Http/Controllers/Dashboard/SettingController.php:16
+* @see app/Http/Controllers/Dashboard/SettingController.php:15
 * @route '/dashboard/settings/account'
 */
 account.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ account.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\SettingController::account
-* @see app/Http/Controllers/Dashboard/SettingController.php:16
+* @see app/Http/Controllers/Dashboard/SettingController.php:15
 * @route '/dashboard/settings/account'
 */
 account.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -87,9 +87,79 @@ account.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updateProfile
+* @see app/Http/Controllers/Dashboard/SettingController.php:19
+* @route '/dashboard/settings/update-profile'
+*/
+export const updateProfile = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateProfile.url(options),
+    method: 'post',
+})
+
+updateProfile.definition = {
+    methods: ["post"],
+    url: '/dashboard/settings/update-profile',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updateProfile
+* @see app/Http/Controllers/Dashboard/SettingController.php:19
+* @route '/dashboard/settings/update-profile'
+*/
+updateProfile.url = (options?: RouteQueryOptions) => {
+    return updateProfile.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updateProfile
+* @see app/Http/Controllers/Dashboard/SettingController.php:19
+* @route '/dashboard/settings/update-profile'
+*/
+updateProfile.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updateProfile.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updatePassword
+* @see app/Http/Controllers/Dashboard/SettingController.php:33
+* @route '/dashboard/settings/update-password'
+*/
+export const updatePassword = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updatePassword.url(options),
+    method: 'post',
+})
+
+updatePassword.definition = {
+    methods: ["post"],
+    url: '/dashboard/settings/update-password',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updatePassword
+* @see app/Http/Controllers/Dashboard/SettingController.php:33
+* @route '/dashboard/settings/update-password'
+*/
+updatePassword.url = (options?: RouteQueryOptions) => {
+    return updatePassword.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Dashboard\SettingController::updatePassword
+* @see app/Http/Controllers/Dashboard/SettingController.php:33
+* @route '/dashboard/settings/update-password'
+*/
+updatePassword.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: updatePassword.url(options),
+    method: 'post',
+})
+
 const settings = {
     system: Object.assign(system, system),
     account: Object.assign(account, account),
+    updateProfile: Object.assign(updateProfile, updateProfile),
+    updatePassword: Object.assign(updatePassword, updatePassword),
 }
 
 export default settings

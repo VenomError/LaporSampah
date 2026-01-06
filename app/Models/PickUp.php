@@ -57,11 +57,11 @@ class PickUp extends Model
 
     public function getColorAttribute(): string
     {
-        return $this->status->color();
+        return $this->status?->color() ?? 'danger';
     }
     public function getIconAttribute(): string
     {
-        return $this->status->icon();
+        return $this->status?->icon() ?? '';
     }
     public function getEstimatePointAttribute(): float
     {

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::reedemtion
-* @see app/Http/Controllers/Dashboard/DashboardController.php:17
+* @see app/Http/Controllers/Dashboard/DashboardController.php:37
 * @route '/dashboard/point-reedemtion'
 */
 export const reedemtion = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ reedemtion.definition = {
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::reedemtion
-* @see app/Http/Controllers/Dashboard/DashboardController.php:17
+* @see app/Http/Controllers/Dashboard/DashboardController.php:37
 * @route '/dashboard/point-reedemtion'
 */
 reedemtion.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ reedemtion.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::reedemtion
-* @see app/Http/Controllers/Dashboard/DashboardController.php:17
+* @see app/Http/Controllers/Dashboard/DashboardController.php:37
 * @route '/dashboard/point-reedemtion'
 */
 reedemtion.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ reedemtion.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Dashboard\DashboardController::reedemtion
-* @see app/Http/Controllers/Dashboard/DashboardController.php:17
+* @see app/Http/Controllers/Dashboard/DashboardController.php:37
 * @route '/dashboard/point-reedemtion'
 */
 reedemtion.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

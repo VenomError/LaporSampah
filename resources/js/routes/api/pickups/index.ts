@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Api\PickupController::assignOperator
-* @see app/Http/Controllers/Api/PickupController.php:15
+* @see app/Http/Controllers/Api/PickupController.php:16
 * @route '/api/pickups/assign-operator'
 */
 export const assignOperator = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -16,7 +16,7 @@ assignOperator.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::assignOperator
-* @see app/Http/Controllers/Api/PickupController.php:15
+* @see app/Http/Controllers/Api/PickupController.php:16
 * @route '/api/pickups/assign-operator'
 */
 assignOperator.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ assignOperator.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::assignOperator
-* @see app/Http/Controllers/Api/PickupController.php:15
+* @see app/Http/Controllers/Api/PickupController.php:16
 * @route '/api/pickups/assign-operator'
 */
 assignOperator.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -35,7 +35,7 @@ assignOperator.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::reject
-* @see app/Http/Controllers/Api/PickupController.php:44
+* @see app/Http/Controllers/Api/PickupController.php:45
 * @route '/api/pickups/{pickup}/reject'
 */
 export const reject = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -50,7 +50,7 @@ reject.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::reject
-* @see app/Http/Controllers/Api/PickupController.php:44
+* @see app/Http/Controllers/Api/PickupController.php:45
 * @route '/api/pickups/{pickup}/reject'
 */
 reject.url = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -83,7 +83,7 @@ reject.url = (args: { pickup: number | { id: number } } | [pickup: number | { id
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::reject
-* @see app/Http/Controllers/Api/PickupController.php:44
+* @see app/Http/Controllers/Api/PickupController.php:45
 * @route '/api/pickups/{pickup}/reject'
 */
 reject.post = (args: { pickup: number | { id: number } } | [pickup: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -93,7 +93,7 @@ reject.post = (args: { pickup: number | { id: number } } | [pickup: number | { i
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::count
-* @see app/Http/Controllers/Api/PickupController.php:53
+* @see app/Http/Controllers/Api/PickupController.php:54
 * @route '/api/pickups/count'
 */
 export const count = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -108,7 +108,7 @@ count.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::count
-* @see app/Http/Controllers/Api/PickupController.php:53
+* @see app/Http/Controllers/Api/PickupController.php:54
 * @route '/api/pickups/count'
 */
 count.url = (options?: RouteQueryOptions) => {
@@ -117,7 +117,7 @@ count.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::count
-* @see app/Http/Controllers/Api/PickupController.php:53
+* @see app/Http/Controllers/Api/PickupController.php:54
 * @route '/api/pickups/count'
 */
 count.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -127,7 +127,7 @@ count.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Api\PickupController::count
-* @see app/Http/Controllers/Api/PickupController.php:53
+* @see app/Http/Controllers/Api/PickupController.php:54
 * @route '/api/pickups/count'
 */
 count.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
