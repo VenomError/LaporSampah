@@ -7,6 +7,8 @@ use App\Http\Controllers\PickUpController;
 use Illuminate\Support\Facades\Route;
 
 
+// MEMBER
+
 Route::middleware(['auth', 'verified', 'role:member'])->group(function () {
     Route::middleware('role:member')->group(function () {
         Route::get('/', [MemberController::class, 'home'])->name('home');

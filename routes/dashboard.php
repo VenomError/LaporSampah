@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard\PickupController;
 use App\Http\Controllers\Dashboard\SettingController;
 use Illuminate\Support\Facades\Route;
 
+// DASHBOARD ROUTE
+
 Route::prefix('dashboard')->middleware(['dashboard', 'auth'])->name('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/point-reedemtion', [DashboardController::class, 'pointReedemtion'])->name('.point.reedemtion');

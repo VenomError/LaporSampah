@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import { wayfinder } from "@laravel/vite-plugin-wayfinder";
+import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import path from 'path';
-import tailwindcss  from '@tailwindcss/vite';
-
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
@@ -15,11 +14,11 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/dashboard.css',
                 'resources/js/app.js',
-                'resources/js/dashboard.js'
+                'resources/js/dashboard.js',
             ],
             refresh: true,
         }),
-        tailwindcss()
+        tailwindcss(),
     ],
     resolve: {
         alias: {
@@ -31,5 +30,8 @@ export default defineConfig({
             '@route': path.resolve('vendor/tightenco/ziggy'),
             '@controller': path.resolve('resources/js/actions/App/Http/Controllers'),
         },
+    },
+    build: {
+        chunkSizeWarningLimit: 10000, // in kB
     },
 });
